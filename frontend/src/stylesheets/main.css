@@ -1,25 +1,50 @@
+@font-face {
+    font-family: 'Kenney';
+    src: url('../fonts/Kenney.woff') format('woff');
+}
+
 main{
     height:538px;
     width:768px;
     background: #211A21;
 }
-nav{
-    background-color:red;
-    height:70px;
+header{
+    height:50px;
     width:100%;
 }
 
 #game{
-    height:418px;
+    height:438px;
     width:100%;
 }
 
 footer{
-    background-color:blue;
     height:50px;
     width:100%;
 }
-h1{
+a{
+    paint-order: stroke fill;
+    text-decoration: none;
+    font-size:20px;
     color:white;
     font-family:"Kenney";
+    -webkit-text-stroke: 5px #434A5F;
+    transition:all 0.2s ease;
+}
+a:hover{
+    color:white;
+    -webkit-text-stroke: 5px #4F43AE;
+}
+
+#logo{
+    margin:auto;
+    height:200px;
+    width:auto;
+}
+#rules a{
+    font-size:15px;
+}
+#rules img{
+    height:30px;
+    width:30px;
 }

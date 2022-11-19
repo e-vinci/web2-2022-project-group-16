@@ -63,11 +63,10 @@ module.exports = {
         type: 'asset/resource',
 
       },
-      {
-
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-
+      { 
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file?name=src/css/[name].[ext]'
+      
       },
       // in html file, emits files in output directory
       // and replace the src with the final path (to deal with svg, img...)
