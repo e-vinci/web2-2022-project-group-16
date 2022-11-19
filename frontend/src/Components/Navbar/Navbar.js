@@ -2,7 +2,7 @@
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
 
-const SITE_NAME = 'yourSiteName';
+const SITE_NAME = '8Bit Danish';
 
 const Navbar = () => {
   renderNavbar();

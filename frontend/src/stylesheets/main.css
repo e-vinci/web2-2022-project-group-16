@@ -1,0 +1,25 @@
+main{
+    height:538px;
+    width:768px;
+    background: #211A21;
+}
+nav{
+    background-color:red;
+    height:70px;
+    width:100%;
+}
+
+#game{
+    height:418px;
+    width:100%;
+}
+
+footer{
+    background-color:blue;
+    height:50px;
+    width:100%;
+}
+h1{
+    color:white;
+    font-family:"Kenney";
+}
