@@ -8,6 +8,7 @@ main{
     width:768px;
     background: #211A21;
 }
+
 header{
     height:50px;
     width:100%;
@@ -22,6 +23,7 @@ footer{
     height:50px;
     width:100%;
 }
+
 a{
     paint-order: stroke fill;
     text-decoration: none;
@@ -31,6 +33,7 @@ a{
     -webkit-text-stroke: 5px #434A5F;
     transition:all 0.2s ease;
 }
+
 a:hover{
     color:white;
     -webkit-text-stroke: 5px #4F43AE;
@@ -41,9 +44,11 @@ a:hover{
     height:200px;
     width:auto;
 }
+
 #rules a{
     font-size:15px;
 }
+
 #rules img{
     height:30px;
     width:30px;
