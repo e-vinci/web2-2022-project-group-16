@@ -36,6 +36,7 @@ var demoArray = initgame();
 console.log(demoArray);
 
 shuffle(demoArray);
+shuffle(demoArray);
 console.log(demoArray);
 console.log("pioche une carte : " + picksCards(1,demoArray));
 console.log("pioche deux carte : " + picksCards(2,demoArray));

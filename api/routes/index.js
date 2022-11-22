@@ -18,6 +18,7 @@ function shuffle (jeu) {
     jeu.sort(()=> Math.random() - 0.5);
 };
 
+
 function picksCards (qty,game) {
     let cardsTake = [] ;
     for(let i = 0 ; i < qty ; i++){
@@ -32,15 +33,15 @@ function picksCards (qty,game) {
 };
 
 
+//partie test
 var demoArray = initgame();
 console.log(demoArray);
-
 shuffle(demoArray);
 console.log(demoArray);
 console.log("pioche une carte : " + picksCards(1,demoArray));
 console.log("pioche deux carte : " + picksCards(2,demoArray));
 console.log(demoArray);
 console.log("nbr carte pioche" + demoArray.length);
-
+//fin partie test
 
 
