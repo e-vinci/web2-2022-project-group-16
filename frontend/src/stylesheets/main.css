@@ -13,10 +13,16 @@ header{
     height:50px;
     width:100%;
 }
+header img, footer img{
+    height:30px;
+    width:30px;
+}
 
 #game{
     height:438px;
     width:100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 footer{
@@ -24,7 +30,7 @@ footer{
     width:100%;
 }
 
-a{
+a, h2, p{
     paint-order: stroke fill;
     text-decoration: none;
     font-size:20px;
@@ -49,7 +55,9 @@ a:hover{
     font-size:15px;
 }
 
-#rules img{
-    height:30px;
-    width:30px;
+h2{
+    font-size:32px;
+}
+#credits p{
+    margin:0;
 }

@@ -11,7 +11,7 @@ const HomePage = () => {
     <div class="row text-center">
         <img id="logo" class="col-12" src="${logo}" alt="8bit danish logo">
         <div class="col-12"><a href="">New Game</a></div>
-        <div class="col-12"><a href="">Credits</a></div>
+        <div class="col-12"><a href="/credits">Credits</a></div>
         <div class="col-12"><a href="">Exit</a></div>
     </div>
     </div>
