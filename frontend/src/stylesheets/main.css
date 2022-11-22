@@ -24,7 +24,7 @@ footer{
     width:100%;
 }
 
-a{
+a, h2{
     paint-order: stroke fill;
     text-decoration: none;
     font-size:20px;
@@ -32,6 +32,10 @@ a{
     font-family:"Kenney";
     -webkit-text-stroke: 5px #434A5F;
     transition:all 0.2s ease;
+}
+
+h2{
+    font-size: 30px;
 }
 
 a:hover{
@@ -49,7 +53,7 @@ a:hover{
     font-size:15px;
 }
 
-#rules img{
+#rules img, #back img{
     height:30px;
     width:30px;
 }
