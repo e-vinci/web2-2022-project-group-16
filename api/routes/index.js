@@ -32,6 +32,24 @@ function picksCards (qty,game) {
     return cardsTake;
 };
 
+function cardsPlayable(cardsValue){
+    playbleCards = {
+        1 : [1,2,3], 
+        2: [1,2,3,4,5,6,7,8,9,10,11,12,13],
+        3: [],
+        4: [4,5,6,7,8,9,10,11,12,13,1,2,3],
+        5: [5,6,7,8,9,10,11,12,13,1,2,3],
+        6: [6,7,8,9,10,11,12,13,1,2,3],
+        7: [4,5,6,7,2,3],
+        8: [8,9,10,11,12,13,1,2,3],
+        9: [9,10,11,12,13,1,2,3],
+        10: [10,11,12,13,1,2,3],
+        11: [11,12,13,1,2,3],
+        12: [12,13,1,2,3],
+        13: [13,1,2,3]
+};
+return playbleCards[cardsValue];
+};
 
 //partie test
 var demoArray = initgame();
@@ -42,6 +60,9 @@ console.log("pioche une carte : " + picksCards(1,demoArray));
 console.log("pioche deux carte : " + picksCards(2,demoArray));
 console.log(demoArray);
 console.log("nbr carte pioche" + demoArray.length);
+var carte = picksCards(1,demoArray);
+console.log("pioche une crtes : "  + carte  );
+console.log("carte jouable dessus : " + cardsPlayable(carte));
 //fin partie test
 
 
