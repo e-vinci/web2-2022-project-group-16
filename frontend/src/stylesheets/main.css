@@ -25,6 +25,10 @@ header img, footer img{
     overflow-y: auto;
 }
 
+#game::-webkit-scrollbar {
+    display: none;
+}
+
 footer{
     height:50px;
     width:100%;

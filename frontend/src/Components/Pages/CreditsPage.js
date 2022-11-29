@@ -5,7 +5,7 @@ const CreditsPage = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
   <header class="px-3 pt-3 d-flex justify-content-between align-items-center">
-  <a href="/"><img id="rules-btn" class="ms-2" src="${backBtn}" alt="rules button"></a>
+  <a href="/" data-uri="/" class="navigation-btn"><img id="rules-btn" class="ms-2" src="${backBtn}" alt="rules button"></a>
   <a href="#"><img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button"></a>
   </header>
   <div id="game" class="d-flex justify-content-center align-items-center">
