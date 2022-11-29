@@ -34,7 +34,9 @@ footer{
     width:100%;
 }
 
-a, h2, p{
+a, button, h2, p{
+    background-color: transparent;
+    border:none;
     paint-order: stroke fill;
     text-decoration: none;
     font-size:20px;
@@ -48,7 +50,7 @@ h2{
     font-size: 30px;
 }
 
-a:hover{
+a:hover, button:hover{
     color:white;
     -webkit-text-stroke: 5px #4F43AE;
 }

@@ -1,6 +1,5 @@
 import { getRememberMe, setAuthenticatedUser, setRememberMe } from '../../utils/auths';
 import { clearPage, renderPageTitle } from '../../utils/render';
-import Navbar from '../Navbar/Navbar';
 import Navigate from '../Router/Navigate';
 
 const LoginPage = () => {
@@ -84,11 +83,9 @@ async function onLogin(e) {
 
   const authenticatedUser = await response.json();
 
-  console.log('Authenticated user : ', authenticatedUser);
+  // console.log('Authenticated user : ', authenticatedUser);
 
-  setAuthenticatedUser(authenticatedUser);
-
-  Navbar();
+  setAuthenticatedUser(authenticatedUser);  
 
   Navigate('/');
 }
