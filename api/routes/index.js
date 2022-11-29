@@ -110,4 +110,6 @@ console.log("pioche une crtes : "  + carte  );
 console.log("carte jouable dessus : " + cardsPlayable(carte));
 //fin partie test
 
+export default index.js;
+
 
