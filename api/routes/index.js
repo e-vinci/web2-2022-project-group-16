@@ -51,15 +51,60 @@ function cardsPlayable(cardsValue){
 return playbleCards[cardsValue];
 };
 
+let id_player = 0;
+
+function createPlayer (pseudo,tableCards, table3Cards, table3CardsHidden) {
+    id_player++;
+        let player = {
+            idPlayer : id_player,
+            pseudoPlayer : pseudo,
+            table3CardsPlayer : tableCards,
+            table3CardsVisiblePlayer: table3Cards,
+            table3carteHiddenPlayer : table3CardsHidden
+        }
+        return player;
+}
+let tablePlayerGame = [];
+
+function addPlayerGame (player) {
+    tablePlayerGame.push(player);
+    return tablePlayerGame;
+}
+
+let indexNextPlayer = 0;
+function nextPlayer() {
+    let player = tablePlayerGame[indexNextPlayer];
+    indexNextPlayer++;
+    if (indexNextPlayer + 1 > tablePlayerGame.length){
+        indexNextPlayer =0;
+    }
+    return player;
+}
+
+
 //partie test
 var demoArray = initgame();
-console.log(demoArray);
+// console.log(demoArray);
 shuffle(demoArray);
-console.log(demoArray);
-console.log("pioche une carte : " + picksCards(1,demoArray));
-console.log("pioche deux carte : " + picksCards(2,demoArray));
-console.log(demoArray);
-console.log("nbr carte pioche" + demoArray.length);
+// console.log(demoArray);
+// console.log("pioche une carte : " + picksCards(1,demoArray));
+// console.log("pioche deux carte : " + picksCards(2,demoArray));
+// console.log(demoArray);
+// console.log("nbr carte pioche" + demoArray.length);
+
+var player1 = createPlayer("Player1",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
+var player2 = createPlayer("Player2",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
+// str = JSON.stringify(player1);
+// console.log(str); // Logs output to dev tools console.
+// console.log(player1.table3Carte)
+addPlayerGame(player1);
+addPlayerGame(player2);
+console.log(nextPlayer());
+console.log(nextPlayer());
+console.log(nextPlayer());
+
+
+
 var carte = picksCards(1,demoArray);
 console.log("pioche une crtes : "  + carte  );
 console.log("carte jouable dessus : " + cardsPlayable(carte));
