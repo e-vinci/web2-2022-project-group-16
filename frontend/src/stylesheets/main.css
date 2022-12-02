@@ -7,6 +7,7 @@ main{
     height:538px;
     width:768px;
     background: #211A21;
+    outline:10px solid #434A5F;
 }
 
 header{
