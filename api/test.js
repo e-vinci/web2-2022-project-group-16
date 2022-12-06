@@ -9,7 +9,7 @@ run();
 
 
 function run () {
-    
+    console.log(danish.cardsPlayable(danish.discardPile[0]));
         
 
 

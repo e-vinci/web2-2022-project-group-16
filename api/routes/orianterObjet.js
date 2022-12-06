@@ -70,8 +70,37 @@ class Deck {
         return cardsTake;
     };
 
+};
+
+class Danish {
+
+    constructor(nbrPlayer) {
+        this.deck = new Deck();
+        for (let i = 0; i < 3; i++) {
+        this.deck.shuffle();
+        }
+        this.discardPile = [] ;
+        this.discardPile.push(new Cards(null, 2));
+        this.tablePlayerGame = [];
+        this.indexOfActualPlayer = 0;
+        for (let i = 0; i < nbrPlayer; i++) {
+            let player = new Player(i, "test", this.deck.picksCards(3), this.deck.picksCards(3), this.deck.picksCards(3));
+            this.tablePlayerGame.push(player);
+        };
+
+    };
+
+
+    nextPlayer(){
+        if(this.indexOfActualPlayer+1 < this.tablePlayerGame.length){
+            this.indexOfActualPlayer = 0;
+        }else{
+            this.indexOfActualPlayer ++;
+        }
+    };
+
     cardsPlayable(cardsValue) {
-        playbleCards = {
+        const playbleCards = {
             1: [1, 2, 3],
             2: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
             3: [],
@@ -86,35 +115,8 @@ class Deck {
             12: [12, 13, 1, 2, 3],
             13: [13, 1, 2, 3]
         };
-        return playbleCards[cardsValue];
+        return playbleCards[cardsValue.value];
     };
-};
-
-class Danish {
-
-    constructor(nbrPlayer) {
-        this.deck = new Deck();
-        for (let i = 0; i < 3; i++) {
-        this.deck.shuffle();
-        }
-        this.discardPile = new Cards(null, 2);
-        this.tablePlayerGame = [];
-        this.indexOfActualPlayer = 0;
-        for (let i = 0; i < nbrPlayer; i++) {
-            let player = new Player(i, "test", this.deck.picksCards(3), this.deck.picksCards(3), this.deck.picksCards(3));
-            this.tablePlayerGame.push(player);
-        };  
-    };
-
-
-    nextPlayer(){
-        if(this.indexOfActualPlayer+1 < this.tablePlayerGame.length){
-            this.indexOfActualPlayer = 0;
-        }else{
-            this.indexOfActualPlayer ++;
-        }
-    };
-
     
 };
 
