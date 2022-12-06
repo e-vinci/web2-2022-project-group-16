@@ -32,7 +32,7 @@ class Player {
 class Deck {
 
     constructor() {
-        let colors = ["pique", "carreau", "coeur", "trefle"];
+        let colors = ["spades", "diamonds", "hearts", "clubs"];
         this.game = [];
         let cmp = 0;
         for (var i = 0; i <= 3; i++) {
@@ -103,9 +103,19 @@ class Danish {
         for (let i = 0; i < nbrPlayer; i++) {
             let player = new Player(i, "test", this.deck.picksCards(3), this.deck.picksCards(3), this.deck.picksCards(3));
             this.tablePlayerGame.push(player);
-        };
-        
+        };  
     };
+
+
+    nextPlayer(){
+        if(this.indexOfActualPlayer+1 < this.tablePlayerGame.length){
+            this.indexOfActualPlayer = 0;
+        }else{
+            this.indexOfActualPlayer ++;
+        }
+    };
+
+    
 };
 
 module.exports = { Cards, Danish, Deck, Player }
