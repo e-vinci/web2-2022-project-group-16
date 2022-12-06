@@ -19,8 +19,8 @@ const NewGamePage = () => {
     <div id="main-menu d-flex">
     <div class="row text-center">
         <div class="col-12"><h2>Choose Game Mode</h2></div>
-        <div class="col-12"><a href="" class="navigation-btn">Player VS A.I.</a></div>
-        <div class="col-12"><a href="" class="navigation-btn">Player VS Players</a></div>
+        <div class="col-12"><button id="game-ia" data-uri="/game-ia">Player VS A.I.</button></div>
+        <div class="col-12"><button id="game-player" data-uri="/game-player">Player VS Players</button></div>
     </div>
     </div>
   </div>
