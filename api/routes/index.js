@@ -1,4 +1,45 @@
 
+const body = document.querySelector('body');
+
+body.addEventListener('click', startGame);
+
+let deck = [];
+let discardPile = [];
+let tablePlayerGame = [];
+let acttualPlayer = 0;
+
+
+function startGame() {
+    deck = initgame();
+    discardPile = {color: null,value: 2}
+    let playerMoi = createPlayer('moi',picksCards(3,deck),picksCards(3,deck),picksCards(3,deck));
+    addPlayerGame(playerMoi);
+    let bot = createPlayer('bot',picksCards(3,deck),picksCards(3,deck),picksCards(3,deck));
+    addPlayerGame(bot);
+
+    playing(deck,discardPile,tablePlayerGame,acttualPlayer);
+}
+
+function playing(deck,discardPile,tablePlayerGame,acttualPlayer){
+    let player = tablePlayerGame[acttualPlayer];
+    let playbleCards = playbleCardsInHands(player.table3CardsPlayer);
+    console.log(playbleCards);
+
+}
+
+function playbleCardsInHands(hands){
+    let playbleCards = cardsPlayable(discardPile[0].value);
+    let cardsPlayableInHands= [];
+    hands.forEach(card => {
+        if (playbleCards.contains(card.value)){
+            cardsPlayableInHands.push(card);
+        }
+    });
+    return cardsPlayableInHands;
+}
+  
+
+
 
 function initgame(){
     let colors = ["pique","carreau","coeur","trefle"];
@@ -64,7 +105,7 @@ function createPlayer (pseudo,tableCards, table3Cards, table3CardsHidden) {
         }
         return player;
 }
-let tablePlayerGame = [];
+
 
 function addPlayerGame (player) {
     tablePlayerGame.push(player);
