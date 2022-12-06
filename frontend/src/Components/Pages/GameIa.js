@@ -4,6 +4,13 @@ import GetButtons from '../Router/GetButtons';
 import rulesBtn from '../../img/rules.png';
 import GetCard from '../../utils/front-script';
 
+const translateCard = (num) => {
+
+  const arrayTranslate = ["card","ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"];
+
+  return arrayTranslate[num];
+
+}
 
 const CreditsPage = () => {
   const main = document.querySelector('main');
@@ -17,7 +24,7 @@ const CreditsPage = () => {
     <div class="card-user">
       <div class="card-hand">
         <div class="card-content three">
-          <div class="cards spades three" data-number="three" data-type="spades" ></div>
+          <div class="cards spades ${translateCard(3)}" data-number="three" data-type="spades" ></div>
         </div>
         <div class="card-content nine">
           <div class="cards clubs nine"></div>
