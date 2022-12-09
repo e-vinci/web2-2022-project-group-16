@@ -2,7 +2,7 @@ import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
 import rulesBtn from '../../img/rules.png';
-import { GetCard, run } from '../../utils/front-script';
+import { run } from '../../utils/front-script';
 
 
 
@@ -13,9 +13,18 @@ const CreditsPage = () => {
   createBody();
   GetButtons();
   run();
-  GetCard();
   // eslint-disable-next-line no-use-before-define
   mainFooter();
+
+  const card = document.querySelectorAll('div.cards');
+
+    Array.from(card).forEach((elem) => {
+        elem.addEventListener('click', () => {
+            const number = elem?.dataset?.number;
+            const type = elem?.dataset?.type;
+            console.log(`${type} - ${number}`);
+        });
+    })
 };
 
 const createBody = () => {
