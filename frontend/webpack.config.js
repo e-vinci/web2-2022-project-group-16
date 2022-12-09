@@ -50,17 +50,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-
-      // emits a separate file and exports the URLs => works for import in JS and url in CSS
-      // default condition: a file with size less than 8kb will be treated as a inline
-      // module type and resource module type otherwise
       {
-        test: /\.(png|jpg|gif|svg|mp3|mpe?g)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+     {
+       test: /\.(woff|woff2|eot|ttf|otf)$/i,
+       type: 'asset/resource',
+     },
       // in html file, emits files in output directory
       // and replace the src with the final path (to deal with svg, img...)
       {
