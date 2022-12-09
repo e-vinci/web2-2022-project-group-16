@@ -40,9 +40,11 @@ const createBody = () => {
   game.id = "game";
   carduser.className = "card-user";
   cardback.className = "card-back";
-  cardvisible.className = "card-back";
+  cardvisible.className = "card-visible";
   cardhand.className = "card-hand";
   cardhand.id = "card-hand";
+  cardback.id = "card-back";
+  cardvisible.id = "card-visible";
 
   const main = document.querySelector('main');
   main.appendChild(game);
