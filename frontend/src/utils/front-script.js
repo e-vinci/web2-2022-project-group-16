@@ -3,24 +3,10 @@ const orianterObjet = require('../../../api/routes/orianterObjet');
 const danish = new orianterObjet.Danish(2);
 
 
-function GetCard() {
-    const card = document.querySelectorAll('div.cards');
-
-    Array.from(card).forEach((elem) => {
-        elem.addEventListener('click', () => {
-            const number = elem?.dataset?.number;
-            const type = elem?.dataset?.type;
-            console.log(`${type} - ${number}`);
-        });
-    })
-}
-
 function translateCard(num) {
-
     const arrayTranslate = ["card","ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"];
   
     return arrayTranslate[num];
-  
 }
 
 function renderCards() {
@@ -65,4 +51,4 @@ function run() {
 };
 
  
-module.exports = { GetCard, run }
+module.exports = { run }
