@@ -1,5 +1,5 @@
 import HomePage from '../Pages/HomePage';
-import FirstMenu from '../Pages/FirstMenu';
+import NewGamePage from '../Pages/NewGamePage';
 import Logout from '../Logout/Logout';
 import LoginPage from '../Pages/LoginPage';
 import CreditsPage from '../Pages/CreditsPage';
@@ -11,7 +11,7 @@ const routes = {
   '/credits': CreditsPage,
   '/register': RegisterPage,
   '/logout': Logout,
-  '/newGame': FirstMenu
+  '/new-game': NewGamePage
 };
 
 export default routes;

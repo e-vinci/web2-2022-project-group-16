@@ -7,6 +7,7 @@ main{
     height:538px;
     width:768px;
     background: #211A21;
+    outline:10px solid #434A5F;
 }
 
 header{
@@ -30,7 +31,9 @@ footer{
     width:100%;
 }
 
-a, h2, p{
+a, button, h2, p, label, input{
+    background-color: transparent;
+    border:none;
     paint-order: stroke fill;
     text-decoration: none;
     font-size:20px;
@@ -44,7 +47,7 @@ h2{
     font-size: 30px;
 }
 
-a:hover{
+a:hover, button:hover{
     color:white;
     -webkit-text-stroke: 5px #4F43AE;
 }
@@ -64,4 +67,25 @@ h2{
 }
 #credits p{
     margin:0;
+}
+
+label{
+    font-size:15px;
+    text-align: left;
+}
+
+.form-control{
+    background-color: transparent;
+    border:3px dashed white;
+    border-radius: 0;
+    padding:0.5rem;
+    outline:transparent;
+    color: white!important;
+}
+input:focus{
+    outline:none!important;
+    background-color: transparent!important;
+    box-shadow:none!important;
+    border-color:white!important;
+    color: white!important;
 }
