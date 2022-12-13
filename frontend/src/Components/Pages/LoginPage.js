@@ -1,6 +1,6 @@
-// import { getRememberMe, setAuthenticatedUser, setRememberMe } from '../../utils/auths';
+import { setAuthenticatedUser } from '../../utils/auths';
 // import { clearPage, renderPageTitle } from '../../utils/render';
-// import Navigate from '../Router/Navigate';
+import Navigate from '../Router/Navigate';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
@@ -20,11 +20,11 @@ const LoginPage = () => {
         <form>
         <div class="form-group pb-2">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="username" aria-describedby="emailHelp">
         </div>
         <div class="form-group pb-2">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -44,7 +44,7 @@ const LoginPage = () => {
 
 // function renderRegisterForm() {
 //   const main = document.querySelector('main');
-//   const form = document.createElement('form');
+
 //   form.className = 'p-5';
 //   const username = document.createElement('input');
 //   username.type = 'text';
@@ -87,41 +87,43 @@ const LoginPage = () => {
 //   form.appendChild(formCheckWrapper);
 //   form.appendChild(submit);
 //   main.appendChild(form);
-//   form.addEventListener('submit', onLogin);
+
 // }
 
 // function onCheckboxClicked(e) {
 //   setRememberMe(e.target.checked);
 // }
 
-// async function onLogin(e) {
-//   e.preventDefault();
+const form = document.createElement('form');
+form.addEventListener('submit', onLogin);
+async function onLogin(e) {
+  e.preventDefault();
 
-//   const username = document.querySelector('#username').value;
-//   const password = document.querySelector('#password').value;
+  const username = document.querySelector('#username').value;
+  const password = document.querySelector('#password').value;
 
-//   const options = {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       username,
-//       password,
-//     }),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   };
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
-//   const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
+  const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
 
-//   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+  if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-//   const authenticatedUser = await response.json();
+  const authenticatedUser = await response.json();
 
-//   // console.log('Authenticated user : ', authenticatedUser);
+  console.log('Authenticated user : ', authenticatedUser);
 
-//   setAuthenticatedUser(authenticatedUser);  
+  setAuthenticatedUser(authenticatedUser);  
 
-//   Navigate('/');
-// }
+  Navigate('/');
+}
 
 export default LoginPage;

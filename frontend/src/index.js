@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './stylesheets/main.css';
-
-import RulesModal from './Components/Modal/RulesModal';
-// import Navbar from './Components/Navbar/Navbar';
 import Router from './Components/Router/Router';
-
-// Navbar();
+import sound from './audio/main_theme.wav';
 
 Router();
-RulesModal();
+const audio = new Audio(sound);
+audio.volume = 1;
+audio.loop = true;
+audio.play();

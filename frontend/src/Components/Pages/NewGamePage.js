@@ -17,7 +17,7 @@ const NewGamePage = () => {
     <div class="row text-center">
         <div class="col-12"><h2>Choose Game Mode</h2></div>
         <div class="col-12"><a href="">Player VS A.I.</a></div>
-        <div class="col-12"><a href="">Player VS Players</a></div>
+        <div class="col-12"><a class="disabled" href="#">Player VS Players</a></div>
     </div>
     </div>
   </div>

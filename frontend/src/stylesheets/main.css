@@ -89,3 +89,12 @@ input:focus{
     border-color:white!important;
     color: white!important;
 }
+
+#volume-slider{
+    width:100px;
+}
+
+.disabled{
+    color:gray;
+    pointer-events: none;
+}

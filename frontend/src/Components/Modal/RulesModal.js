@@ -1,12 +1,12 @@
 
 
 const RulesModal = () => {
-    const rulesmodal = `<div class="modal" tabindex="-1" role="dialog">
+    document.querySelector('footer').innerHTML = `<div id="modal" class="modal" tabindex="-1" role="dialog" style="display:none;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" id="close-modal" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -20,9 +20,12 @@ const RulesModal = () => {
       </div>
     </div>
   </div>`
-
-  const main = document.querySelector('main');
-  main.innerHTML += rulesmodal;
+  document.getElementById('myModal').addEventListener('click', () => {
+    document.getElementById('modal').style.display = 'block';
+  });
+  document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('modal').style.display = 'none';
+  });
 };
 
 export default RulesModal;

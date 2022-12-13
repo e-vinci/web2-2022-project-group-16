@@ -1,9 +1,9 @@
 import logo from '../../img/logo.svg';
-import rulesBtn from '../../img/rules.png';
 import menuBtn from '../../img/menu.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
 // import RulesModal from '../Modal/RulesModal';
+import Footer from '../Footer/Footer';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -19,11 +19,11 @@ const HomePage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a href="#">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>`;
-  document.getElementsByClassName('button');
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 
   GetButtons();
   // RulesModal();
+  Footer();
 };
 
 export default HomePage;
