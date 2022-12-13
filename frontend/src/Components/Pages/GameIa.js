@@ -2,7 +2,7 @@ import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
 import rulesBtn from '../../img/rules.png';
-import { run } from '../../utils/front-script';
+import { run, cardPlay } from '../../utils/front-script';
 
 
 
@@ -16,15 +16,24 @@ const CreditsPage = () => {
   // eslint-disable-next-line no-use-before-define
   mainFooter();
 
+  console.log(`test`);
   const card = document.querySelectorAll('div.cards');
+  console.log(card);
+  Array.from(card).forEach((elem) => {
+      elem.addEventListener('click', () => {
+          const number = elem?.dataset?.number;
+          const type = elem?.dataset?.type;
+          console.log(`${type} - ${number}`);
+          const user = elem.closest('div.card-user');
+          console.log(user)
+          const idJoueur = user?.dataset?.player;
+          console.log(`${idJoueur}`);
 
-    Array.from(card).forEach((elem) => {
-        elem.addEventListener('click', () => {
-            const number = elem?.dataset?.number;
-            const type = elem?.dataset?.type;
-            console.log(`${type} - ${number}`);
-        });
-    })
+          cardPlay(number, type, idJoueur);
+      });
+  })
+  // eslint-disable-next-line no-unused-vars
+  
 };
 
 const createBody = () => {
@@ -33,25 +42,55 @@ const createBody = () => {
 	// eslint-disable-next-line camelcase
 	const carduser = document.createElement("div"); 
 	const cardback = document.createElement("div"); 
+  const cardbackIa = document.createElement("div");
 	const cardvisible = document.createElement("div"); 
+  const cardvisibleIa = document.createElement("div"); 
   const cardhand = document.createElement("div"); 
+  const playerGame = document.createElement("div");
+  const iaGame = document.createElement("div");
+  const carduserIa = document.createElement("div"); 
+  const cardhandIa = document.createElement("div"); 
+  const pile = document.createElement("div");
 
   // assigning class name to the new div
   game.id = "game";
+  pile.id = "pile";
   carduser.className = "card-user";
+  carduserIa.className = "card-user";
   cardback.className = "card-back";
+  cardbackIa.className = "card-back";
   cardvisible.className = "card-visible";
+  cardvisibleIa.className = "card-visible";
   cardhand.className = "card-hand";
+  cardhandIa.className = "card-hand";
   cardhand.id = "card-hand";
+  cardhandIa.id = "card-hand";
   cardback.id = "card-back";
+  cardbackIa.id = "card-back";
   cardvisible.id = "card-visible";
+  cardvisibleIa.id = "card-visible";
+  carduser.dataset.player = 1;
+  playerGame.id = "playerGame";
+  iaGame.id = "iaGame";
+  playerGame.className = "hand-player";
+  iaGame.className = "hand-player";
+  carduserIa.dataset.player = 0;
 
   const main = document.querySelector('main');
   main.appendChild(game);
-  game.appendChild(carduser);
+  game.appendChild(pile);
+  game.appendChild(playerGame);
+  game.appendChild(iaGame);
+
+  iaGame.appendChild(carduserIa);
+  carduserIa.appendChild(cardhandIa);
+  iaGame.appendChild(cardbackIa);
+  iaGame.appendChild(cardvisibleIa);
+
+  playerGame.appendChild(carduser);
   carduser.appendChild(cardhand)
-  game.appendChild(cardback);
-  game.appendChild(cardvisible);
+  playerGame.appendChild(cardback);
+  playerGame.appendChild(cardvisible);
 
 }
 

@@ -88,7 +88,7 @@ h2{
     background-repeat: no-repeat;
     cursor: pointer;
 }
-.card-hand .card-content:hover {
+#playerGame .card-hand .card-content:hover {
     margin-bottom: 15px;
     transition: .3s;
 }
@@ -163,6 +163,27 @@ h2{
 
 .card-visible{
     bottom: 90px;
+}
+#iaGame, #playerGame {
+    position: absolute;
+    width: 100%;
+}
+#iaGame {
+    top:50%;
+}
+#playerGame {
+    bottom:0%;
+}
+#iaGame .card-user {
+    position: absolute;
+    width: 100%;
+    top: -155px;
+}
+#pile{
+    position: absolute;
+    top: 44%;
+    text-align: center;
+    left: 47%;
 }
 
 
