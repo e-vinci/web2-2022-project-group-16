@@ -1,12 +1,14 @@
+/* eslint-disable import/no-import-module-exports */
+// eslint-disable-next-line import/no-import-module-exports
 import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
 import rulesBtn from '../../img/rules.png';
-import { run, cardPlay } from '../../utils/front-script';
+import { run, clickOnCard } from '../../utils/front-script';
 
 
 
-const CreditsPage = () => {
+const GamePage = () => {
   // eslint-disable-next-line no-use-before-define
   mainHeader();
   // eslint-disable-next-line no-use-before-define
@@ -15,26 +17,15 @@ const CreditsPage = () => {
   run();
   // eslint-disable-next-line no-use-before-define
   mainFooter();
-
+  clickOnCard();
   console.log(`test`);
-  const card = document.querySelectorAll('div.cards');
-  console.log(card);
-  Array.from(card).forEach((elem) => {
-      elem.addEventListener('click', () => {
-          const number = elem?.dataset?.number;
-          const type = elem?.dataset?.type;
-          console.log(`${type} - ${number}`);
-          const user = elem.closest('div.card-user');
-          console.log(user)
-          const idJoueur = user?.dataset?.player;
-          console.log(`${idJoueur}`);
 
-          cardPlay(number, type, idJoueur);
-      });
-  })
+
+
   // eslint-disable-next-line no-unused-vars
   
 };
+
 
 const createBody = () => {
   // create a new div element 
@@ -69,12 +60,12 @@ const createBody = () => {
   cardbackIa.id = "card-back";
   cardvisible.id = "card-visible";
   cardvisibleIa.id = "card-visible";
-  carduser.dataset.player = 1;
+  playerGame.dataset.player = 1;
   playerGame.id = "playerGame";
   iaGame.id = "iaGame";
   playerGame.className = "hand-player";
   iaGame.className = "hand-player";
-  carduserIa.dataset.player = 0;
+  iaGame.dataset.player = 0;
 
   const main = document.querySelector('main');
   main.appendChild(game);
@@ -113,5 +104,5 @@ const mainFooter = () => {
   `;
 }
 
+export default GamePage;
 
-export default CreditsPage;

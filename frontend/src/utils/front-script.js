@@ -1,8 +1,27 @@
+// eslint-disable-next-line import/no-cycle, import/no-import-module-exports, import/named
 const orianterObjet = require('../../../api/routes/orianterObjet');
 
 const nbrPlayer = 2;
 const danish = new orianterObjet.Danish(nbrPlayer);
 
+
+function clickOnCard() {
+    const card = document.querySelectorAll('div#playerGame div.cards');
+    console.log(card);
+    Array.from(card).forEach((elem) => {
+      elem.addEventListener('click', () => {
+          const number = elem?.dataset?.number;
+          const type = elem?.dataset?.type;
+          console.log(`${type} - ${number}`);
+          const user = elem.closest('div#playerGame');
+          console.log(user)
+          const idJoueur = user?.dataset?.player;
+          console.log(`${idJoueur}`);
+  
+          cardPlay(number, type, idJoueur);
+      });
+  })
+}
 
 function translateCard(num) {
     const arrayTranslate = ["card","ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"];
@@ -19,7 +38,7 @@ function renderCardsHand() {
     console.log("main ");
     console.log(playerHand)
     console.log("main special card ");
-    console.log(playerHand[0].value)
+    // console.log(playerHand[0].value)
 
 
     // eslint-disable-next-line no-plusplus
@@ -42,6 +61,8 @@ function renderCardsHand() {
         divCardPlayer.appendChild(cardcontent);
         cardcontent.appendChild(cards);
     }
+
+    clickOnCard();
 
 }
 
@@ -68,10 +89,18 @@ function renderCardsHidden(){
         cardcontent.className += translateCard(playerHidden[i].value);
 
         cards.className = "cards";
+        cards.className += " ";
+        cards.className += playerHidden[i].color;
+        cards.className += " ";
+        cards.className += translateCard(playerHidden[i].value);
+        cards.dataset.number = translateCard(playerHidden[i].value);
+        cards.dataset.type = playerHidden[i].color;
 
         divCardPlayer.appendChild(cardcontent);
         cardcontent.appendChild(cards);
     }
+
+    clickOnCard();
 
 }
 
@@ -85,7 +114,7 @@ function renderCardsVisible() {
     console.log("main ");
     console.log(playerVisible)
     console.log("main special card ");
-    console.log(playerVisible[0].value)
+    // console.log(playerVisible[0].value)
 
 
     // eslint-disable-next-line no-plusplus
@@ -109,6 +138,8 @@ function renderCardsVisible() {
         cardcontent.appendChild(cards);
     }
 
+    clickOnCard();
+
 }
 
 function renderCardsVisibleIa() {
@@ -120,7 +151,7 @@ function renderCardsVisibleIa() {
     console.log("main ");
     console.log(playerVisible)
     console.log("main special card ");
-    console.log(playerVisible[0].value)
+    // console.log(playerVisible[0].value)
 
 
     // eslint-disable-next-line no-plusplus
@@ -169,6 +200,12 @@ function renderCardsHiddenIa(){
         cardcontent.className += translateCard(playerHidden[i].value);
 
         cards.className = "cards";
+        cards.className += " ";
+        cards.className += playerHidden[i].color;
+        cards.className += " ";
+        cards.className += translateCard(playerHidden[i].value);
+        cards.dataset.number = translateCard(playerHidden[i].value);
+        cards.dataset.type = playerHidden[i].color;
 
         divCardPlayer.appendChild(cardcontent);
         cardcontent.appendChild(cards);
@@ -234,15 +271,15 @@ function renderPile() {
 
 }
 
-
 function IAPlaye() {
     let index = 0;
+    let card = {color : null , value : 20} 
     if(danish.tablePlayerGame[0].tableHands.length !== 0 ){
-        let card = {color : null , value : 20} 
+        
         // eslint-disable-next-line no-plusplus
         for(let i=0; i < danish.tablePlayerGame[0].tableHands.length ; i++)
             if(danish.tablePlayerGame[0].tableHands[i].value <= card.value){
-                console.log("-----test main :-------");
+                console.log("-----test main ia :-------");
                 console.log(danish.tablePlayerGame[0].tableHands);
                 card = danish.tablePlayerGame[0].tableHands[i];
                 index = i;
@@ -255,11 +292,41 @@ function IAPlaye() {
 
         console.log("main ia après jouer")
         console.log(danish.tablePlayerGame[0].tableHands);
-
-        renderPile();
         renderCardsHandIa();
+        if(danish.tablePlayerGame[0].tableHands.length !== 0){
+            renderCardsHandIa();
+        }
+        
+
+    }else if (danish.tablePlayerGame[0].table3CardsVisiblePlayer.length !== 0){
+        console.log("rentre dans jouer carte visible IA +++++++++++");
+        // eslint-disable-next-line no-plusplus
+        for(let i=0; i < danish.tablePlayerGame[0].table3CardsVisiblePlayer.length ; i++)
+            if(danish.tablePlayerGame[0].table3CardsVisiblePlayer[i].value <= card.value){
+                console.log("-----test carte visible ia :-------");
+                console.log(danish.tablePlayerGame[0].table3CardsVisiblePlayer);
+                card = danish.tablePlayerGame[0].table3CardsVisiblePlayer[i];
+                index = i;
+        }
+        danish.discardPile.push(danish.tablePlayerGame[0].table3CardsVisiblePlayer.splice(index,1)[0]);
+        
+        renderCardsVisibleIa();
+    
+        
+    }else {
+        console.log("++++£££££££££+++££ rentre dans jouer carte cacher IA ++++£££££££££+++££");
+        // eslint-disable-next-line prefer-destructuring
+        card = danish.tablePlayerGame[0].table3carteHiddenPlayer[0];
+        index = 0;
+        console.log("%%%%%%%%%%%%carte cacher ia : %%%%%%%%%%%%%");
+        console.log(card);
+        danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
     }
-}
+
+    renderPile();
+    danish.nextPlayer();
+
+};
 
 
 function run() {
@@ -275,8 +342,8 @@ console.log("---------- nouveau tour -------------");
     renderCardsHiddenIa();
     renderCardsHandIa();
 
-    IAPlaye();
-    danish.nextPlayer();
+    setTimeout(IAPlaye, 200);
+
     
     
     console.log("defausse");
@@ -290,25 +357,54 @@ console.log("---------- nouveau tour -------------");
 function cardPlay(number, type, idJoueur) {
     console.log(`c'est le tour de : ${  danish.indexOfActualPlayer}`);
     console.log(`indice jouer = ${  idJoueur}`);
-    console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands)
+    console.log(`nombre : ${  number}`)
+    console.log(`type : ${  type}`)
+    
     // eslint-disable-next-line eqeqeq
     if(danish.indexOfActualPlayer == idJoueur){
         console.log(" son tour");
         if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length !== 0){
             // eslint-disable-next-line no-plusplus
-            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length ; i++){
-    
-                if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value === number && danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].color === type){
-                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].splice(i,1));
+            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
+
+                // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+
+                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].color === type){
+                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
                     console.log("defausse après jouer");
                     console.log(danish.discardPile);
-                }
-                
+                    renderPile();
+                    danish.getNewCard();
+                    renderCardsHand();
+                    
 
-    
+                }
             }
-    
+        }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
+            console.log("+++--------+=+++++ rentre dans jouer visible joueur +++--------+=+++++");
+
+
+            // eslint-disable-next-line no-plusplus
+            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length-1 ; i++){
+
+                // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+
+                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].color === type){
+                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.splice(i,1)[0]);
+                    console.log("defausse après jouer");
+                    console.log(danish.discardPile);
+        
+                    renderCardsVisible();
+                    
+
+                }
+            }
+
+
         }
+
+        danish.nextPlayer();
+        setTimeout(IAPlaye, 200);
     } else {
         console.log("pas son tour");
     }
@@ -320,4 +416,4 @@ function cardPlay(number, type, idJoueur) {
 
 
  
-module.exports = { run, cardPlay }
+module.exports = { run, clickOnCard }

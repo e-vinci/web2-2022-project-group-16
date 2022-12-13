@@ -185,6 +185,10 @@ h2{
     text-align: center;
     left: 47%;
 }
+.card-back .card-content .cards {
+    background-position-y: 0px;
+    background-position-x: 0px;
+}
 
 
 
