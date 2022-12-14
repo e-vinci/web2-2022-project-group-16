@@ -86,6 +86,8 @@ class Danish {
         }
         this.discardPile = [] ;
         this.discardPile.push(new Cards(null, null));
+        console.log("+%£+%£+%+%+%£+%£+£+%£ discardPile +%£+%£+%+%+%£+%£+£+%£");
+        console.log(this.discardPile);
         this.tablePlayerGame = [];
         this.indexOfActualPlayer = 0;
         for (let i = 0; i < nbrPlayer; i++) {
@@ -127,6 +129,9 @@ class Danish {
     }
 
     cardsPlayable(cardsValue) {
+        if (cardsValue.value === 3){
+            return this.cardsPlayableBis(cardsValue,-1);
+        }
         const playbleCards = {
             null: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
             1: [1, 2, 3],
@@ -146,6 +151,29 @@ class Danish {
         return playbleCards[cardsValue.value];
     };
     
+
+    cardsPlayableBis(cardsValue, numPile) {
+        if (cardsValue.value === 3){
+            return this.cardsPlayableBis(this.discardPile[this.discardPile.length + numPile], numPile -1);
+        }
+        const playbleCards = {
+            null: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+            1: [1, 2, 3],
+            2: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+            3: [],
+            4: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2, 3],
+            5: [5, 6, 7, 8, 9, 10, 11, 12, 13, 1, 2, 3],
+            6: [6, 7, 8, 9, 10, 11, 12, 13, 1, 2, 3],
+            7: [4, 5, 6, 7, 2, 3],
+            8: [8, 9, 10, 11, 12, 13, 1, 2, 3],
+            9: [9, 10, 11, 12, 13, 1, 2, 3],
+            10: [10, 11, 12, 13, 2, 3],
+            11: [11, 12, 13, 1, 2, 3],
+            12: [12, 13, 1, 2, 3],
+            13: [13, 1, 2, 3]
+        };
+        return playbleCards[cardsValue.value];
+    };
 };
 
 module.exports = { Cards, Danish, Deck, Player }
