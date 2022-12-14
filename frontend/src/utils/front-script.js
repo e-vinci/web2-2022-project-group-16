@@ -342,16 +342,8 @@ function IAPlaye() {
 
     }else if (danish.tablePlayerGame[0].table3CardsVisiblePlayer.length !== 0){
         console.log("rentre dans jouer carte visible IA +++++++++++");
-        // eslint-disable-next-line no-plusplus
-        for(let i=0; i < danish.tablePlayerGame[0].table3CardsVisiblePlayer.length ; i++)
-            if(danish.tablePlayerGame[0].table3CardsVisiblePlayer[i].value <= card.value){
-                console.log("-----test carte visible ia :-------");
-                console.log(danish.tablePlayerGame[0].table3CardsVisiblePlayer);
-                card = danish.tablePlayerGame[0].table3CardsVisiblePlayer[i];
-                index = i;
-        }
-        danish.discardPile.push(danish.tablePlayerGame[0].table3CardsVisiblePlayer.splice(index,1)[0]);
-        
+
+        IAConditionPlay(danish.tablePlayerGame[0].table3CardsVisiblePlayer);
         renderCardsVisibleIa();
     
         
@@ -359,10 +351,15 @@ function IAPlaye() {
         console.log("++++£££££££££+++££ rentre dans jouer carte cacher IA ++++£££££££££+++££");
         // eslint-disable-next-line prefer-destructuring
         card = danish.tablePlayerGame[0].table3carteHiddenPlayer[0];
-        index = 0;
-        console.log("%%%%%%%%%%%%carte cacher ia : %%%%%%%%%%%%%");
-        console.log(card);
-        danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
+        const cardDiscard = danish.discardPile[danish.discardPile.length-1];
+        const cardsPlayable = danish.cardsPlayable(cardDiscard);
+        if(cardsPlayable.includes(card.value)){
+            index = 0;
+            console.log("%%%%%%%%%%%%carte cacher ia : %%%%%%%%%%%%%");
+            console.log(card);
+            danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
+        
+        }
         
         renderCardsHiddenIa();
     }
