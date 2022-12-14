@@ -23,10 +23,16 @@ function clickOnCard() {
   })
 }
 
-function translateCard(num) {
+function translateCardFromNum(num) {
     const arrayTranslate = ["card","ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"];
   
     return arrayTranslate[num];
+}
+
+function translateCardFromString(string) {
+    const arrayTranslate = ["card","ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"];
+  
+    return arrayTranslate.indexOf(string);
 }
 
 function renderCardsHand() {
@@ -40,23 +46,32 @@ function renderCardsHand() {
     console.log("main special card ");
     // console.log(playerHand[0].value)
 
-
     // eslint-disable-next-line no-plusplus
     for(let i=0; i < playerHand.length; i++){
+        
+
         const cardcontent = document.createElement("div"); 
         const cards = document.createElement("div"); 
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerHand[i].value);
+        cardcontent.className += translateCardFromNum(playerHand[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerHand[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerHand[i].value);
-        cards.dataset.number = translateCard(playerHand[i].value);
+        cards.className += translateCardFromNum(playerHand[i].value);
+        cards.dataset.number = translateCardFromNum(playerHand[i].value);
         cards.dataset.type = playerHand[i].color;
+        console.log("CARTE VALUE POURV PLAYABLE")
+        console.log(playerHand[i].value);
+        console.log("PILE VALEUR EN HAUT")
+        console.log(danish.discardPile[danish.discardPile.length-1])
+        if (danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(playerHand[i].value)){
+            cards.className += " ";
+            cards.className += "isPlayable";
+        }
 
         divCardPlayer.appendChild(cardcontent);
         cardcontent.appendChild(cards);
@@ -86,14 +101,14 @@ function renderCardsHidden(){
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerHidden[i].value);
+        cardcontent.className += translateCardFromNum(playerHidden[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerHidden[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerHidden[i].value);
-        cards.dataset.number = translateCard(playerHidden[i].value);
+        cards.className += translateCardFromNum(playerHidden[i].value);
+        cards.dataset.number = translateCardFromNum(playerHidden[i].value);
         cards.dataset.type = playerHidden[i].color;
 
         divCardPlayer.appendChild(cardcontent);
@@ -124,14 +139,14 @@ function renderCardsVisible() {
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerVisible[i].value);
+        cardcontent.className += translateCardFromNum(playerVisible[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerVisible[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerVisible[i].value);
-        cards.dataset.number = translateCard(playerVisible[i].value);
+        cards.className += translateCardFromNum(playerVisible[i].value);
+        cards.dataset.number = translateCardFromNum(playerVisible[i].value);
         cards.dataset.type = playerVisible[i].color;
 
         divCardPlayer.appendChild(cardcontent);
@@ -161,14 +176,14 @@ function renderCardsVisibleIa() {
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerVisible[i].value);
+        cardcontent.className += translateCardFromNum(playerVisible[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerVisible[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerVisible[i].value);
-        cards.dataset.number = translateCard(playerVisible[i].value);
+        cards.className += translateCardFromNum(playerVisible[i].value);
+        cards.dataset.number = translateCardFromNum(playerVisible[i].value);
         cards.dataset.type = playerVisible[i].color;
 
         divCardPlayer.appendChild(cardcontent);
@@ -197,14 +212,14 @@ function renderCardsHiddenIa(){
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerHidden[i].value);
+        cardcontent.className += translateCardFromNum(playerHidden[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerHidden[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerHidden[i].value);
-        cards.dataset.number = translateCard(playerHidden[i].value);
+        cards.className += translateCardFromNum(playerHidden[i].value);
+        cards.dataset.number = translateCardFromNum(playerHidden[i].value);
         cards.dataset.type = playerHidden[i].color;
 
         divCardPlayer.appendChild(cardcontent);
@@ -230,14 +245,14 @@ function renderCardsHandIa() {
 
         cardcontent.className = "card-content";
         cardcontent.className += " ";
-        cardcontent.className += translateCard(playerHand[i].value);
+        cardcontent.className += translateCardFromNum(playerHand[i].value);
 
         cards.className = "cards";
         cards.className += " ";
         cards.className += playerHand[i].color;
         cards.className += " ";
-        cards.className += translateCard(playerHand[i].value);
-        cards.dataset.number = translateCard(playerHand[i].value);
+        cards.className += translateCardFromNum(playerHand[i].value);
+        cards.dataset.number = translateCardFromNum(playerHand[i].value);
         cards.dataset.type = playerHand[i].color;
 
         divCardPlayer.appendChild(cardcontent);
@@ -256,13 +271,13 @@ function renderPile() {
     const cardcontent = document.createElement("div"); 
     cardcontent.className = "card-content";
     cardcontent.className += " ";
-    cardcontent.className += translateCard(infoCard.value);
+    cardcontent.className += translateCardFromNum(infoCard.value);
     cards.className = "cards";
     cards.className += " ";
     cards.className += infoCard.color;
     cards.className += " ";
-    cards.className += translateCard(infoCard.value);
-    cards.dataset.number = translateCard(infoCard.value);
+    cards.className += translateCardFromNum(infoCard.value);
+    cards.dataset.number = translateCardFromNum(infoCard.value);
     cards.dataset.type = infoCard.color;
 
     divCardPlayer.appendChild(cardcontent);
@@ -373,21 +388,33 @@ function cardPlay(number, type, idJoueur) {
     if(danish.indexOfActualPlayer == idJoueur){
         console.log(" son tour");
         if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length !== 0){
-            // eslint-disable-next-line no-plusplus
-            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
+            console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]));
+            console.log("numero recus : ");
+            console.log(translateCardFromString(number))
+            // console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number)));
 
-                // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+            if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){
+                console.log("CEST BON !!!!!!!!!!!!!!!!!!!")
+            
+                // eslint-disable-next-line no-plusplus
+                for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
 
-                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].color === type){
-                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
-                    console.log("defausse après jouer");
-                    console.log(danish.discardPile);
-                    renderPile();
-                    danish.getNewCard();
-                    renderCardsHand();
-                    
+                    // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
 
+                    if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].color === type){
+                        danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
+                        console.log("defausse après jouer");
+                        console.log(danish.discardPile);
+                        renderPile();
+                        danish.getNewCard();
+                        renderCardsHand();
+                        
+
+                    }
                 }
+            } else {
+                console.log("carte pas bonne !!!!!!!!!!")
+                return;
             }
         }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
             console.log("+++--------+=+++++ rentre dans jouer visible joueur +++--------+=+++++");
@@ -398,7 +425,7 @@ function cardPlay(number, type, idJoueur) {
 
                 // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
 
-                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].color === type){
+                if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].color === type){
                     danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.splice(i,1)[0]);
                     console.log("defausse après jouer");
                     console.log(danish.discardPile);
@@ -415,7 +442,7 @@ function cardPlay(number, type, idJoueur) {
 
                 // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
 
-                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].color === type){
+                if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].color === type){
                     danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.splice(i,1)[0]);
                     console.log("defausse après jouer");
                     console.log(danish.discardPile);
