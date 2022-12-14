@@ -86,8 +86,9 @@ class Danish {
         }
         this.discardPile = [] ;
         this.discardPile.push(new Cards(null, null));
-        console.log("+%£+%£+%+%+%£+%£+£+%£ discardPile +%£+%£+%+%+%£+%£+£+%£");
+        console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE")
         console.log(this.discardPile);
+        console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE")
         this.tablePlayerGame = [];
         this.indexOfActualPlayer = 0;
         for (let i = 0; i < nbrPlayer; i++) {
@@ -118,13 +119,15 @@ class Danish {
     };
 
     getNewCard(){
-        if(this.deck.length !== 1){
-            console.log("a piocher ++++++++++++")
-            let card = this.deck.picksCards(1)[0];
-            if(card !== undefined){
-                this.tablePlayerGame[this.indexOfActualPlayer].tableHands.push(card);
+        if(this.tablePlayerGame[this.indexOfActualPlayer].tableHands.length < 3){
+            if(this.deck.length !== 1){
+                console.log("a piocher ++++++++++++")
+                let card = this.deck.picksCards(1)[0];
+                if(card !== undefined){
+                    this.tablePlayerGame[this.indexOfActualPlayer].tableHands.push(card);
+                }
+            
             }
-        
         }
     }
 

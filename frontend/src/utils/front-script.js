@@ -10,6 +10,7 @@ function clickOnCard() {
     console.log(card);
     Array.from(card).forEach((elem) => {
       elem.addEventListener('click', () => {
+            renderPile();
           const number = elem?.dataset?.number;
           const type = elem?.dataset?.type;
           console.log(`${type} - ${number}`);
@@ -64,10 +65,10 @@ function renderCardsHand() {
         cards.className += translateCardFromNum(playerHand[i].value);
         cards.dataset.number = translateCardFromNum(playerHand[i].value);
         cards.dataset.type = playerHand[i].color;
-        console.log("CARTE VALUE POURV PLAYABLE")
-        console.log(playerHand[i].value);
-        console.log("PILE VALEUR EN HAUT")
-        console.log(danish.discardPile[danish.discardPile.length-1])
+        // console.log("CARTE VALUE POURV PLAYABLE")
+        // console.log(playerHand[i].value);
+        // console.log("PILE VALEUR EN HAUT")
+        // console.log(danish.discardPile[danish.discardPile.length-1])
 
         if (danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(playerHand[i].value)){
             cardcontent.className += " ";
@@ -265,6 +266,9 @@ function renderCardsHandIa() {
 
 function renderPile() {
     console.log("------- render pile -------")
+    console.log("PPPPPPPPPPPIIIIIIIIIIILLLLLLLEEEEE");
+    console.log(danish.discardPile);
+    console.log("PPPPPPPPPPPIIIIIIIIIIILLLLLLLEEEEE");
     const divCardPlayer = document.querySelector("#game #pile");
     divCardPlayer.innerHTML = "";
     const infoCard = danish.discardPile[danish.discardPile.length-1];
@@ -287,32 +291,54 @@ function renderPile() {
 
 }
 
+
+function GetDicardPile(){
+    console.log("%%%%%%%% GETDISCARDPILE %%%%%%%%%%");
+    const discardPileNew = [];
+    danish.discardPile.forEach(element => {
+        if(danish.discardPile[0] !== element){
+            danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.push(element);
+        }else{
+            discardPileNew.push(element);
+        }
+    });
+    danish.discardPile = discardPileNew;
+}
+
+function IAConditionPlay(tableToPlay){
+    const cardDiscard = danish.discardPile[danish.discardPile.length-1];
+    const cardsPlayable = danish.cardsPlayable(cardDiscard);
+    let index = -1 ;
+    let card = {color : null , value : 20} 
+    // eslint-disable-next-line no-plusplus
+    for(let i=0; i < tableToPlay.length ; i++){
+            if (tableToPlay[i].value <= card.value){
+                if(cardsPlayable.includes(tableToPlay[i].value)){
+                    console.log("-----test tableToPLay ia :-------");
+                    console.log(tableToPlay);
+                    card = tableToPlay[i];
+                    index = i;
+                }
+        }
+    }
+    if(index > -1){
+    danish.discardPile.push(tableToPlay.splice(index,1)[0]);
+      
+    danish.getNewCard();
+
+    }else{
+        console.log("SHEHHHHHHHHHHHHHH");
+        GetDicardPile();
+    }
+}
+
 function IAPlaye() {
     let index = 0;
     let card = {color : null , value : 20} 
     if(danish.tablePlayerGame[0].tableHands.length !== 0 ){
-        
-        // eslint-disable-next-line no-plusplus
-        for(let i=0; i < danish.tablePlayerGame[0].tableHands.length ; i++)
-            if(danish.tablePlayerGame[0].tableHands[i].value <= card.value){
-                console.log("-----test main ia :-------");
-                console.log(danish.tablePlayerGame[0].tableHands);
-                card = danish.tablePlayerGame[0].tableHands[i];
-                index = i;
-        }
-
-        
-        danish.discardPile.push(danish.tablePlayerGame[0].tableHands.splice(index,1)[0]);
-        
-        danish.getNewCard();
-
-        console.log("main ia après jouer")
-        console.log(danish.tablePlayerGame[0].tableHands);
+        console.log("rentre dans jouer carte HAnds IA +++++++++++");
+        IAConditionPlay(danish.tablePlayerGame[0].tableHands);
         renderCardsHandIa();
-        if(danish.tablePlayerGame[0].tableHands.length !== 0){
-            renderCardsHandIa();
-        }
-        
 
     }else if (danish.tablePlayerGame[0].table3CardsVisiblePlayer.length !== 0){
         console.log("rentre dans jouer carte visible IA +++++++++++");
