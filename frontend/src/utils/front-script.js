@@ -10,7 +10,6 @@ function clickOnCard() {
     console.log(card);
     Array.from(card).forEach((elem) => {
       elem.addEventListener('click', () => {
-            renderPile();
           const number = elem?.dataset?.number;
           const type = elem?.dataset?.type;
           console.log(`${type} - ${number}`);
@@ -42,9 +41,9 @@ function renderCardsHand() {
     // danish.cardsPlayable(danish.discardPile[0]);
     
     const playerHand = danish.tablePlayerGame[1].tableHands;
-    console.log("main ");
-    console.log(playerHand)
-    console.log("main special card ");
+    // console.log("main actual player");
+    // console.log(playerHand)
+    // console.log("main special card ");
     // console.log(playerHand[0].value)
 
     // eslint-disable-next-line no-plusplus
@@ -291,8 +290,34 @@ function renderPile() {
 
 }
 
+function CutDiscardPile(){
 
-function GetDicardPile(){
+// eslint-disable-next-line no-plusplus
+for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
+
+    // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+    if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value === 10){
+        danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
+        console.log("defausse après jouer");
+        console.log(danish.discardPile);
+        danish.getNewCard();
+        renderCardsHand();
+    }
+}
+
+    const discardPileNew = [];
+    discardPileNew.push(danish.discardPile[0]);
+    danish.discardPile = discardPileNew;
+    renderPile();
+    
+    if(danish.indexOfActualPlayer === 0){
+        console.log("TUUUUU FAITTTT CHIERRRRRRRRRR");
+        return IAPlaye();
+    }
+}
+
+
+function GetDiscardPile(){
     console.log("%%%%%%%% GETDISCARDPILE %%%%%%%%%%");
     console.log(`for player num ${danish.indexOfActualPlayer}`)
     const discardPileNew = [];
@@ -303,6 +328,8 @@ function GetDicardPile(){
             discardPileNew.push(element);
         }
     });
+    renderCardsHand();
+    renderCardsHandIa();
     danish.discardPile = discardPileNew;
 }
 
@@ -326,10 +353,15 @@ function IAConditionPlay(tableToPlay){
     danish.discardPile.push(tableToPlay.splice(index,1)[0]);
       
     danish.getNewCard();
+    
+    if(card.value === 10){
+        console.log("IA A COUPERRRRRRRRRRRRR");
+        CutDiscardPile();
+    }
 
     }else{
         console.log("SHEHHHHHHHHHHHHHH");
-        GetDicardPile();
+        GetDiscardPile();
     }
 }
 
@@ -375,15 +407,32 @@ function IAPlaye() {
     renderPile();
     renderCardsHand();
     danish.nextPlayer();
+    console.log(`player to play AFTER IA : ${danish.indexOfActualPlayer}`);
 
 
 
+    CanYouPlay();
+    
+
+
+    console.log(`player to play AFTER CAN YOU PLAY ?: ${danish.indexOfActualPlayer}`);
+
+
+};
+
+function CanYouPlay(){
     const cardDiscard = danish.discardPile[danish.discardPile.length-1];
     const cardsPlayable = danish.cardsPlayable(cardDiscard);
     let cmp = 0;
+    let tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer
+    if (danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length !== 0){
+        tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands
+    }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
+        tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer
+    }
     // eslint-disable-next-line no-plusplus
-    for(let i=0; i < danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length ; i++){
-        if(!cardsPlayable.includes(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)){
+    for(let i=0; i < tableToPlay.length ; i++){
+        if(!cardsPlayable.includes(tableToPlay[i].value)){
             // eslint-disable-next-line no-plusplus
             cmp++;
         }
@@ -391,22 +440,19 @@ function IAPlaye() {
     console.log("cmp");
     console.log(cmp);
     console.log("danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length");
-    console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length);
-    if(cmp >= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length){
+    console.log(tableToPlay.length);
+    if(cmp >= tableToPlay.length){
         console.log("SHEHHHH JULIEN")
-        GetDicardPile();
+        GetDiscardPile();
         renderCardsHand();
         renderPile();
         danish.nextPlayer();
-        setTimeout(IAPlaye, 700);
         console.log(`player to play : ${danish.indexOfActualPlayer}`);
+        setTimeout(IAPlaye, 1000);
+        
     }
 
-
-
-
-};
-
+}
 
 function run() {
 // danish.tablePlayerGame[danish.indexOfActualPlayer].win === false
@@ -447,6 +493,11 @@ function cardPlay(number, type, idJoueur) {
             console.log("numero recus : ");
             console.log(translateCardFromString(number))
             // console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number)));
+            if(translateCardFromString(number) === 10){
+                CutDiscardPile();
+                renderCardsHand();
+                return;
+            }
 
             if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){
                 console.log("CEST BON !!!!!!!!!!!!!!!!!!!")
@@ -484,7 +535,7 @@ function cardPlay(number, type, idJoueur) {
                     danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.splice(i,1)[0]);
                     console.log("defausse après jouer");
                     console.log(danish.discardPile);
-        
+                    renderPile();
                     renderCardsVisible();
                 }
             }
@@ -501,6 +552,7 @@ function cardPlay(number, type, idJoueur) {
                     danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.splice(i,1)[0]);
                     console.log("defausse après jouer");
                     console.log(danish.discardPile);
+                    renderPile();
                     renderCardsHidden();
                 }
             }

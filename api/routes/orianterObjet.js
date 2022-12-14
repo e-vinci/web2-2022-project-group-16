@@ -56,7 +56,7 @@ class Deck {
 
     picksCards = (qty) => {
         console.log("rentrer picksCards");
-        console.log(this.game.length);
+        // console.log(this.game.length);
 
         let cardsTake = [];
         for (let i = 0; i < qty; i++) {
