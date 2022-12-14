@@ -187,7 +187,7 @@ function renderCardsHiddenIa(){
     console.log("main ");
     console.log(playerHidden)
     console.log("main special card ");
-    console.log(playerHidden[0].value)
+    // console.log(playerHidden[0].value)
 
 
     // eslint-disable-next-line no-plusplus
@@ -321,6 +321,15 @@ function IAPlaye() {
         console.log("%%%%%%%%%%%%carte cacher ia : %%%%%%%%%%%%%");
         console.log(card);
         danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
+        
+        renderCardsHiddenIa();
+    }
+
+    if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
+        danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
+        console.log("a gagner : ");
+        console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
+        return;
     }
 
     renderPile();
@@ -342,7 +351,7 @@ console.log("---------- nouveau tour -------------");
     renderCardsHiddenIa();
     renderCardsHandIa();
 
-    setTimeout(IAPlaye, 200);
+    setTimeout(IAPlaye, 700);
 
     
     
@@ -395,16 +404,35 @@ function cardPlay(number, type, idJoueur) {
                     console.log(danish.discardPile);
         
                     renderCardsVisible();
-                    
+                }
+            }
+        }else{
+            console.log("+++--------+=+++++ rentre dans jouer cacher joueur +++--------+=+++++");
 
+
+            // eslint-disable-next-line no-plusplus
+            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length-1 ; i++){
+
+                // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+
+                if(translateCard(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].color === type){
+                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.splice(i,1)[0]);
+                    console.log("defausse après jouer");
+                    console.log(danish.discardPile);
+                    renderCardsHidden();
                 }
             }
 
-
+        }
+        if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
+            danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
+            console.log("a gagner : ");
+            console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
+            return;
         }
 
         danish.nextPlayer();
-        setTimeout(IAPlaye, 200);
+        setTimeout(IAPlaye, 700);
     } else {
         console.log("pas son tour");
     }
