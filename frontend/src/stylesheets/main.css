@@ -86,11 +86,12 @@ h2{
     background-image: url("../img/Cards.png");
     background-size: cover;
     background-repeat: no-repeat;
-    cursor: pointer;
+
 }
-#playerGame .card-hand .card-content .cards.isPlayable {
+#playerGame .card-hand .card-content.isPlayable:hover {
     margin-bottom: 15px;
     transition: .3s;
+    cursor: pointer
 }
 .cards.hearts{
     background-position-y: 0px;

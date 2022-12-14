@@ -68,9 +68,10 @@ function renderCardsHand() {
         console.log(playerHand[i].value);
         console.log("PILE VALEUR EN HAUT")
         console.log(danish.discardPile[danish.discardPile.length-1])
+
         if (danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(playerHand[i].value)){
-            cards.className += " ";
-            cards.className += "isPlayable";
+            cardcontent.className += " ";
+            cardcontent.className += "isPlayable";
         }
 
         divCardPlayer.appendChild(cardcontent);
@@ -348,6 +349,7 @@ function IAPlaye() {
     }
 
     renderPile();
+    renderCardsHand();
     danish.nextPlayer();
 
 };
