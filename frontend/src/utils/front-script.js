@@ -294,6 +294,7 @@ function renderPile() {
 
 function GetDicardPile(){
     console.log("%%%%%%%% GETDISCARDPILE %%%%%%%%%%");
+    console.log(`for player num ${danish.indexOfActualPlayer}`)
     const discardPileNew = [];
     danish.discardPile.forEach(element => {
         if(danish.discardPile[0] !== element){
@@ -374,6 +375,35 @@ function IAPlaye() {
     renderPile();
     renderCardsHand();
     danish.nextPlayer();
+
+
+
+    const cardDiscard = danish.discardPile[danish.discardPile.length-1];
+    const cardsPlayable = danish.cardsPlayable(cardDiscard);
+    let cmp = 0;
+    // eslint-disable-next-line no-plusplus
+    for(let i=0; i < danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length ; i++){
+        if(!cardsPlayable.includes(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)){
+            // eslint-disable-next-line no-plusplus
+            cmp++;
+        }
+    }
+    console.log("cmp");
+    console.log(cmp);
+    console.log("danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length");
+    console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length);
+    if(cmp >= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length){
+        console.log("SHEHHHH JULIEN")
+        GetDicardPile();
+        renderCardsHand();
+        renderPile();
+        danish.nextPlayer();
+        setTimeout(IAPlaye, 700);
+        console.log(`player to play : ${danish.indexOfActualPlayer}`);
+    }
+
+
+
 
 };
 
