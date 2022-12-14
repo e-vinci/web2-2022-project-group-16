@@ -4,6 +4,10 @@ class Cards {
         this.color = color;
         this.value = value;
     };
+
+    getValue() {
+        return this.value;
+    }
 };
 
 class Player {
@@ -14,6 +18,7 @@ class Player {
         this.tableHands = tableCards;
         this.table3CardsVisiblePlayer = table3Cards;
         this.table3carteHiddenPlayer = table3CardsHidden;
+        this.win = false;
     };
 
     playbleCardsInHands(discardPile) {
@@ -50,7 +55,7 @@ class Deck {
     };
 
     picksCards = (qty) => {
-        console.log("rentrer");
+        console.log("rentrer picksCards");
         console.log(this.game.length);
 
         let cardsTake = [];
@@ -66,7 +71,7 @@ class Deck {
        // console.log(cardsTake);
        console.log(cardsTake);
        console.log(this.game.length);
-       console.log("sorti");
+       console.log("sorti picksCards");
         return cardsTake;
     };
 
@@ -80,7 +85,7 @@ class Danish {
         this.deck.shuffle();
         }
         this.discardPile = [] ;
-        this.discardPile.push(new Cards(null, 2));
+        this.discardPile.push(new Cards(null, null));
         this.tablePlayerGame = [];
         this.indexOfActualPlayer = 0;
         for (let i = 0; i < nbrPlayer; i++) {
@@ -88,19 +93,42 @@ class Danish {
             this.tablePlayerGame.push(player);
         };
 
+        console.log("main ia constructeur -----");
+        this.tablePlayerGame[0].tableHands.forEach(element => {
+            console.log(element);
+        });
+
+        console.log(this.tablePlayerGame[0].tableHands.length)
+        
+        console.log(this.tablePlayerGame[0].tableHands);
+        console.log("main player constructeur");
+        console.log(this.tablePlayerGame[1].tableHands);
+
     };
 
 
     nextPlayer(){
         if(this.indexOfActualPlayer+1 < this.tablePlayerGame.length){
-            this.indexOfActualPlayer = 0;
+            this.indexOfActualPlayer++;
         }else{
-            this.indexOfActualPlayer ++;
+            this.indexOfActualPlayer=0;
         }
     };
 
+    getNewCard(){
+        if(this.deck.length !== 1){
+            console.log("a piocher ++++++++++++")
+            let card = this.deck.picksCards(1)[0];
+            if(card !== undefined){
+                this.tablePlayerGame[this.indexOfActualPlayer].tableHands.push(card);
+            }
+        
+        }
+    }
+
     cardsPlayable(cardsValue) {
         const playbleCards = {
+            null: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
             1: [1, 2, 3],
             2: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
             3: [],
