@@ -387,8 +387,13 @@ function IAConditionPlay(tableToPlay){
             danish.getNewCard();
             danish.discardPile.push(tableToPlay.splice(index,1)[0]);
             danish.getNewCard();
-            return
- 
+            return true;
+        }
+        if(card.value === 8){
+            console.log("IA REJOUE AVCE 8");
+            danish.discardPile.push(tableToPlay.splice(index,1)[0]);
+            danish.getNewCard();
+            return false;
         }
 
         danish.discardPile.push(tableToPlay.splice(index,1)[0]);
@@ -403,22 +408,24 @@ function IAConditionPlay(tableToPlay){
         GetDiscardPile();
     }
     
-
+    return true;
 
 }
 
 function IAPlaye() {
+    let canChangePlayer ;
     const index = 0;
+    let canWin = false;
     let card = {color : null , value : 20} 
     if(danish.tablePlayerGame[0].tableHands.length !== 0 ){
         console.log("rentre dans jouer carte HAnds IA +++++++++++");
-        IAConditionPlay(danish.tablePlayerGame[0].tableHands);
+        canChangePlayer = IAConditionPlay(danish.tablePlayerGame[0].tableHands);
         renderCardsHandIa();
 
     }else if (danish.tablePlayerGame[0].table3CardsVisiblePlayer.length !== 0){
         console.log("rentre dans jouer carte visible IA +++++++++++");
 
-        IAConditionPlay(danish.tablePlayerGame[0].table3CardsVisiblePlayer);
+        canChangePlayer = IAConditionPlay(danish.tablePlayerGame[0].table3CardsVisiblePlayer);
         renderCardsVisibleIa();
     
         
@@ -432,12 +439,14 @@ function IAPlaye() {
         if(!cardsPlayable.includes(card.value)){
             GetDiscardPile();
             renderPile();
+            canWin = false;
         }
+        canWin = true;
     
         renderCardsHiddenIa();
     }
 
-    if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
+    if( canWin && danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
         danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
         console.log("a gagner : ");
         console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
@@ -447,8 +456,13 @@ function IAPlaye() {
     renderPile();
     console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);
     renderCardsHand();
-    renderCardsVisible();
-    danish.nextPlayer();
+    renderCardsVisible()
+    if(canChangePlayer){
+        danish.nextPlayer();
+    }else{
+        setTimeout(IAPlaye, 1000);
+        return ;
+    }
     console.log(`player to play AFTER IA : ${danish.indexOfActualPlayer}`);
     CanYouPlay();
     console.log(`player to play AFTER CAN YOU PLAY ?: ${danish.indexOfActualPlayer}`);
@@ -460,11 +474,11 @@ function CanYouPlay(){
     const cardDiscard = danish.discardPile[danish.discardPile.length-1];
     const cardsPlayable = danish.cardsPlayable(cardDiscard);
     let cmp = 0;
-    let tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer
+    let tableToPlay = danish.discardPile[0];
     if (danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length !== 0){
         tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands
-    }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
-        tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer
+    }else if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
+        tableToPlay = danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer;
     }
     // eslint-disable-next-line no-plusplus
     for(let i=0; i < tableToPlay.length ; i++){
@@ -524,15 +538,14 @@ function cardPlay(number, type, idJoueur) {
     
     // eslint-disable-next-line eqeqeq
     if(danish.indexOfActualPlayer == idJoueur){
+        let bool10 = false;
         console.log(" son tour");
         if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length !== 0){
-            console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]));
-            console.log("numero recus : ");
-            console.log(translateCardFromString(number))
-            // console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number)));
+            
             if(translateCardFromString(number) === 10){
                 CutDiscardPile();
                 renderCardsHand();
+                bool10 = true;
                 return;
             }
             
@@ -545,8 +558,6 @@ function cardPlay(number, type, idJoueur) {
 
                     if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].color === type){
                         danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
-                        console.log("defausse après jouer");
-                        console.log(danish.discardPile);
                         renderPile();
                         danish.getNewCard();
                         renderCardsHand();
@@ -566,44 +577,80 @@ function cardPlay(number, type, idJoueur) {
         }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
             console.log("+++--------+=+++++ rentre dans jouer visible joueur +++--------+=+++++");
 
-            if(translateCardFromString(number) === 10){
-                CutDiscardPile();
-                renderCardsHand();
-                return;
-            }
-            // eslint-disable-next-line no-plusplus
-            for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length-1 ; i++){
+            if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){            
 
-                // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
-
-                if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].color === type){
-                    danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.splice(i,1)[0]);
-                    console.log("defausse après jouer");
-                    console.log(danish.discardPile);
-                    renderPile();
-                    renderCardsVisible();
+                // eslint-disable-next-line no-plusplus
+                for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length-1 ; i++){
+                    // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+                    if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer[i].color === type){
+                        console.log("TU RENTRE ICIIIIII ????????????????????")
+                        danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.splice(i,1)[0]);
+                        renderPile();
+                        renderCardsVisible();
+                        if (translateCardFromString(number) === 8){
+                            console.log("JE REJOUEEEEEEEE")
+                            renderCardsVisible();
+                            return;
+                        }
+                        if(translateCardFromString(number) === 10){
+                            CutDiscardPile();
+                            renderCardsVisible();
+                            bool10 = true;
+                            return;
+                        }
+                    }else {
+                        setTimeout(GetDiscardPile, 500);
+                        renderCardsHidden();
+                    }
                 }
             }
         }else{
             console.log("+++--------+=+++++ rentre dans jouer cacher joueur +++--------+=+++++");
-
-            if(translateCardFromString(number) === 10){
-                CutDiscardPile();
-                renderCardsHand();
-                return;
-            }
-
+        
             // eslint-disable-next-line no-plusplus
             for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length-1 ; i++){
+                console.log("TU RENTRE ICIIIIII ????????????????????%%%%%%%%%%%%%%%%")
+                console.log(`i ::::::::: ${i}`);
+                console.log(`number :::::::::${number}`);
+                console.log(`type ::::::::::${type}`);
+                console.log(`table3CardsVisiblePlayer[i].value)${translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].value)}`);
+                console.log(`table3CardsVisiblePlayer[i].color${danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].color}`);
 
                 // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
 
                 if(translateCardFromNum(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].value) === number && danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i].color === type){
+                    
                     danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.splice(i,1)[0]);
-                    console.log("defausse après jouer");
-                    console.log(danish.discardPile);
-                    renderPile();
-                    renderCardsHidden();
+                    console.log("CA RENTRE ICI");
+                    console.log("defauce PLAYEBLE........................");
+                    console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]));
+                    console.log("IL EST CONTENU DEDANS ? /////");
+                    console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i])
+                    console.log("c est bon ??");
+                    console.log(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i]))
+                    console.log("defauce PLAYEBLE........................");
+
+                    if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer[i])){
+                        console.log("defausse après jouer");
+                        console.log(danish.discardPile);
+                        renderPile();
+                        renderCardsHidden();
+                        if (translateCardFromString(number) === 8){
+                            console.log("JE REJOUEEEEEEEE")
+                            renderCardsHidden();
+                            return;
+                        }
+                        if(translateCardFromString(number) === 10){
+                            CutDiscardPile();
+                            renderCardsHidden();
+                            bool10 = true;
+                            return;
+                        }
+                    }else {
+                        setTimeout(GetDiscardPile, 500);
+                        renderCardsHidden();
+                    }
+                    
                 }
             }
 
@@ -616,7 +663,10 @@ function cardPlay(number, type, idJoueur) {
         }
         console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);
 
-        danish.nextPlayer();
+        if(!bool10){
+            danish.nextPlayer();
+        }
+        
         setTimeout(IAPlaye, 700);
     } else {
         console.log("pas son tour");
