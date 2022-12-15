@@ -351,23 +351,9 @@ function IAConditionPlay(tableToPlay){
     }
     if(index > -1){
         if(card.value === 8){
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
             danish.discardPile.push(tableToPlay.splice(index,1)[0]);
             danish.getNewCard();
             setTimeout(IAPlaye, 1000);
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
-            console.log("IA A REJOUERRR AVEC UN 8");
             return;
 
         }
@@ -375,15 +361,7 @@ function IAConditionPlay(tableToPlay){
         if(card.value === 10){
             console.log("IA A COUPERRRRRRRRRRRRR");
             CutDiscardPile(); 
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            console.log("danish.indexOfActualPlayer");
-            console.log(danish.indexOfActualPlayer);
-            console.log("taille mai IA AVANT PIOCHER:::::::");
-            console.log(danish.tablePlayerGame[0].tableHands.length);
             danish.getNewCard();
-            console.log("taille mai IA APRES PIOCHER:::::::");
-            console.log(danish.tablePlayerGame[0].tableHands.length);
-            console.log("T ES ICIIIIIIIIII ?????????")
             danish.discardPile.push(tableToPlay.splice(index,1)[0]);
             danish.getNewCard();
             return
