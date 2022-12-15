@@ -350,6 +350,28 @@ function IAConditionPlay(tableToPlay){
         }
     }
     if(index > -1){
+        if(card.value === 8){
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            danish.discardPile.push(tableToPlay.splice(index,1)[0]);
+            danish.getNewCard();
+            setTimeout(IAPlaye, 1000);
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            console.log("IA A REJOUERRR AVEC UN 8");
+            return;
+
+        }
+
         if(card.value === 10){
             console.log("IA A COUPERRRRRRRRRRRRR");
             CutDiscardPile(); 
@@ -511,6 +533,7 @@ function cardPlay(number, type, idJoueur) {
                 renderCardsHand();
                 return;
             }
+            
 
             if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){            
                 // eslint-disable-next-line no-plusplus
@@ -525,6 +548,11 @@ function cardPlay(number, type, idJoueur) {
                         renderPile();
                         danish.getNewCard();
                         renderCardsHand();
+                        if (translateCardFromString(number) === 8){
+                            console.log("JE REJOUEEEEEEEE")
+                            renderCardsHand();
+                            return;
+                        }
                         
 
                     }
@@ -536,7 +564,11 @@ function cardPlay(number, type, idJoueur) {
         }else if (danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length !== 0){
             console.log("+++--------+=+++++ rentre dans jouer visible joueur +++--------+=+++++");
 
-
+            if(translateCardFromString(number) === 10){
+                CutDiscardPile();
+                renderCardsHand();
+                return;
+            }
             // eslint-disable-next-line no-plusplus
             for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3CardsVisiblePlayer.length-1 ; i++){
 
@@ -553,6 +585,11 @@ function cardPlay(number, type, idJoueur) {
         }else{
             console.log("+++--------+=+++++ rentre dans jouer cacher joueur +++--------+=+++++");
 
+            if(translateCardFromString(number) === 10){
+                CutDiscardPile();
+                renderCardsHand();
+                return;
+            }
 
             // eslint-disable-next-line no-plusplus
             for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length-1 ; i++){
