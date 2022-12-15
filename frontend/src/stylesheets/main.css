@@ -51,7 +51,10 @@ a:hover, button:hover{
     color:white;
     -webkit-text-stroke: 5px #4F43AE;
 }
-
+.button{
+    height:25px;
+    width:25px;
+}
 #logo{
     margin:auto;
     height:200px;
@@ -92,6 +95,7 @@ input:focus{
 
 #volume-slider{
     width:100px;
+    vertical-align: middle;
 }
 
 .disabled{

@@ -3,7 +3,7 @@ import menuBtn from '../../img/menu.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
 // import RulesModal from '../Modal/RulesModal';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -23,7 +23,6 @@ const HomePage = () => {
 
   GetButtons();
   // RulesModal();
-  Footer();
 };
 
 export default HomePage;

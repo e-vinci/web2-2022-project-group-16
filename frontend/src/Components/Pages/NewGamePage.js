@@ -1,4 +1,3 @@
-import rulesBtn from '../../img/rules.png';
 import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
@@ -21,7 +20,7 @@ const NewGamePage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a href="#">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"></footer>`;
   GetButtons();
 };
 
