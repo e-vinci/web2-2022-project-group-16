@@ -337,19 +337,36 @@ function IAConditionPlay(tableToPlay){
     const cardDiscard = danish.discardPile[danish.discardPile.length-1];
     const cardsPlayable = danish.cardsPlayable(cardDiscard);
     let index = -1 ;
+    let indexBis = -1;
     let card = {color : null , value : 20} 
     // eslint-disable-next-line no-plusplus
-    for(let i=0; i < tableToPlay.length ; i++){
+    for(let i= 0 ; i < tableToPlay.length  ; i++){
             if (tableToPlay[i].value <= card.value){
                 if(cardsPlayable.includes(tableToPlay[i].value)){
                     console.log("-----test tableToPLay ia :-------");
                     console.log(tableToPlay);
-                    card = tableToPlay[i];
-                    index = i;
+                    if(tableToPlay[i].value === 3 || tableToPlay[i].value ===2 || tableToPlay[i].value === 1){
+                        /* if(index === -1){
+                            card = tableToPlay[i];
+                            index = i;
+                        }
+                        */
+                        indexBis = i;
+                    }else{
+                        card = tableToPlay[i];
+                        index = i;
+                    }
                 }
         }
     }
+    if (index === -1){
+        if(indexBis !== -1) {
+         index = indexBis;
+         card = tableToPlay[indexBis];   
+        }
+    }
     if(index > -1){
+        /*
         if(card.value === 8){
             danish.discardPile.push(tableToPlay.splice(index,1)[0]);
             danish.getNewCard();
@@ -357,6 +374,7 @@ function IAConditionPlay(tableToPlay){
             return;
 
         }
+        */
 
         if(card.value === 10){
             console.log("IA A COUPERRRRRRRRRRRRR");
@@ -376,6 +394,7 @@ function IAConditionPlay(tableToPlay){
 
     }else{
         console.log("SHEHHHHHHHHHHHHHH");
+        
         GetDiscardPile();
     }
     
