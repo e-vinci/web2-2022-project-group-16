@@ -150,6 +150,11 @@ function renderCardsVisible() {
         cards.dataset.number = translateCardFromNum(playerVisible[i].value);
         cards.dataset.type = playerVisible[i].color;
 
+        if (danish.tablePlayerGame[1].tableHands.length ===0 && danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(playerVisible[i].value)){
+            cardcontent.className += " ";
+            cardcontent.className += "isPlayable";
+        }
+
         divCardPlayer.appendChild(cardcontent);
         cardcontent.appendChild(cards);
     }
@@ -444,6 +449,7 @@ function IAPlaye() {
     renderPile();
     console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);
     renderCardsHand();
+    renderCardsVisible();
     danish.nextPlayer();
     console.log(`player to play AFTER IA : ${danish.indexOfActualPlayer}`);
     CanYouPlay();
@@ -499,7 +505,8 @@ console.log("---------- nouveau tour -------------");
     renderCardsHiddenIa();
     renderCardsHandIa();
 
-    setTimeout(IAPlaye, 700);
+    setTimeout(IAPlaye, 1000);
+    
 
     
     

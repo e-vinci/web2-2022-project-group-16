@@ -88,7 +88,7 @@ h2{
     background-repeat: no-repeat;
 
 }
-#playerGame .card-hand .card-content.isPlayable:hover {
+#playerGame .card-content.isPlayable:hover {
     margin-bottom: 15px;
     transition: .3s;
     cursor: pointer
