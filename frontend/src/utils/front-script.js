@@ -292,18 +292,18 @@ function renderPile() {
 
 function CutDiscardPile(){
 
-// eslint-disable-next-line no-plusplus
-for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
+    // eslint-disable-next-line no-plusplus
+    for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
 
-    // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
-    if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value === 10){
-        danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
-        console.log("defausse après jouer");
-        console.log(danish.discardPile);
-        danish.getNewCard();
-        renderCardsHand();
+        // console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value)
+        if(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands[i].value === 10){
+            danish.discardPile.push(danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.splice(i,1)[0]);
+            console.log("defausse après jouer");
+            console.log(danish.discardPile);
+            danish.getNewCard();
+            renderCardsHand();
+        }
     }
-}
 
     const discardPileNew = [];
     discardPileNew.push(danish.discardPile[0]);
@@ -312,7 +312,7 @@ for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHan
     
     if(danish.indexOfActualPlayer === 0){
         console.log("TUUUUU FAITTTT CHIERRRRRRRRRR");
-        return IAPlaye();
+        // return setTimeout(IAPlaye, 1000);
     }
 }
 
@@ -350,19 +350,37 @@ function IAConditionPlay(tableToPlay){
         }
     }
     if(index > -1){
-    danish.discardPile.push(tableToPlay.splice(index,1)[0]);
-      
-    danish.getNewCard();
-    
-    if(card.value === 10){
-        console.log("IA A COUPERRRRRRRRRRRRR");
-        CutDiscardPile();
-    }
+        if(card.value === 10){
+            console.log("IA A COUPERRRRRRRRRRRRR");
+            CutDiscardPile(); 
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log("danish.indexOfActualPlayer");
+            console.log(danish.indexOfActualPlayer);
+            console.log("taille mai IA AVANT PIOCHER:::::::");
+            console.log(danish.tablePlayerGame[0].tableHands.length);
+            danish.getNewCard();
+            console.log("taille mai IA APRES PIOCHER:::::::");
+            console.log(danish.tablePlayerGame[0].tableHands.length);
+            console.log("T ES ICIIIIIIIIII ?????????")
+            danish.discardPile.push(tableToPlay.splice(index,1)[0]);
+            danish.getNewCard();
+            return
+ 
+        }
+
+        danish.discardPile.push(tableToPlay.splice(index,1)[0]);
+        
+        danish.getNewCard();
+        
+        
 
     }else{
         console.log("SHEHHHHHHHHHHHHHH");
         GetDiscardPile();
     }
+    
+
+
 }
 
 function IAPlaye() {
@@ -405,16 +423,11 @@ function IAPlaye() {
     }
 
     renderPile();
+    console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);
     renderCardsHand();
     danish.nextPlayer();
     console.log(`player to play AFTER IA : ${danish.indexOfActualPlayer}`);
-
-
-
     CanYouPlay();
-    
-
-
     console.log(`player to play AFTER CAN YOU PLAY ?: ${danish.indexOfActualPlayer}`);
 
 
@@ -499,9 +512,7 @@ function cardPlay(number, type, idJoueur) {
                 return;
             }
 
-            if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){
-                console.log("CEST BON !!!!!!!!!!!!!!!!!!!")
-            
+            if(danish.cardsPlayable(danish.discardPile[danish.discardPile.length-1]).includes(translateCardFromString(number))){            
                 // eslint-disable-next-line no-plusplus
                 for(let i = 0 ; i <= danish.tablePlayerGame[danish.indexOfActualPlayer].tableHands.length-1 ; i++){
 
@@ -564,6 +575,7 @@ function cardPlay(number, type, idJoueur) {
             console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
             return;
         }
+        console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);
 
         danish.nextPlayer();
         setTimeout(IAPlaye, 700);
