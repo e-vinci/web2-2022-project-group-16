@@ -408,7 +408,7 @@ function IAConditionPlay(tableToPlay){
 }
 
 function IAPlaye() {
-    let index = 0;
+    const index = 0;
     let card = {color : null , value : 20} 
     if(danish.tablePlayerGame[0].tableHands.length !== 0 ){
         console.log("rentre dans jouer carte HAnds IA +++++++++++");
@@ -428,14 +428,12 @@ function IAPlaye() {
         card = danish.tablePlayerGame[0].table3carteHiddenPlayer[0];
         const cardDiscard = danish.discardPile[danish.discardPile.length-1];
         const cardsPlayable = danish.cardsPlayable(cardDiscard);
-        if(cardsPlayable.includes(card.value)){
-            index = 0;
-            console.log("%%%%%%%%%%%%carte cacher ia : %%%%%%%%%%%%%");
-            console.log(card);
-            danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
-        
+        danish.discardPile.push(danish.tablePlayerGame[0].table3carteHiddenPlayer.splice(index,1)[0]);
+        if(!cardsPlayable.includes(card.value)){
+            GetDiscardPile();
+            renderPile();
         }
-        
+    
         renderCardsHiddenIa();
     }
 
