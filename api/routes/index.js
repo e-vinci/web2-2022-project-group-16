@@ -1,13 +1,13 @@
 
 
 function initgame(){
-    let colors = ["pique","carreau","coeur","trefle"];
-    let game = [];
+    const colors = ["pique","carreau","coeur","trefle"];
+    const game = [];
     let cmp = 0;
-    for(var i = 0; i <= 3 ; i ++){
-        for(var j = 1; j <= 13 ; j ++){
+    for(let i = 0; i <= 3 ; i +=1){
+        for(let j = 1; j <= 13 ; j +=1){
             game[cmp] = {color: colors[i],value: j};
-            cmp++;
+            cmp+=1;
         }
     }
     return game;
@@ -20,20 +20,21 @@ function shuffle (jeu) {
 
 
 function picksCards (qty,game) {
-    let cardsTake = [] ;
-    for(let i = 0 ; i < qty ; i++){
-        cardsTake[i] = game[i];
+    const cardsTake = [] ;
+    const gameCard = game;
+    for(let i = 0 ; i < qty ; i+=1){
+        cardsTake[i] = gameCard[i];
     }
-    for(let i = 0 ; i < game.length ; i++){
-        game[i] = game[i+qty];
+    for(let i = 0 ; i < game.length ; i+=1){
+        gameCard[i] = game[i+qty];
     }
-    game.length = game.length-qty;
+    gameCard.length -=qty;
     console.log(cardsTake);
     return cardsTake;
 };
 
 function cardsPlayable(cardsValue){
-    playbleCards = {
+    const playbleCards = {
         1 : [1,2,3], 
         2: [1,2,3,4,5,6,7,8,9,10,11,12,13],
         3: [],
@@ -51,12 +52,12 @@ function cardsPlayable(cardsValue){
 return playbleCards[cardsValue];
 };
 
-let id_player = 0;
+let idPlayer = 0;
 
 function createPlayer (pseudo,tableCards, table3Cards, table3CardsHidden) {
-    id_player++;
-        let player = {
-            idPlayer : id_player,
+    idPlayer+=1;
+        const player = {
+            idPlayer,
             pseudoPlayer : pseudo,
             table3CardsPlayer : tableCards,
             table3CardsVisiblePlayer: table3Cards,
@@ -64,7 +65,7 @@ function createPlayer (pseudo,tableCards, table3Cards, table3CardsHidden) {
         }
         return player;
 }
-let tablePlayerGame = [];
+const tablePlayerGame = [];
 
 function addPlayerGame (player) {
     tablePlayerGame.push(player);
@@ -73,8 +74,8 @@ function addPlayerGame (player) {
 
 let indexNextPlayer = 0;
 function nextPlayer() {
-    let player = tablePlayerGame[indexNextPlayer];
-    indexNextPlayer++;
+    const player = tablePlayerGame[indexNextPlayer];
+    indexNextPlayer+=11;
     if (indexNextPlayer + 1 > tablePlayerGame.length){
         indexNextPlayer =0;
     }
@@ -82,8 +83,8 @@ function nextPlayer() {
 }
 
 
-//partie test
-var demoArray = initgame();
+// partie test
+const demoArray = initgame();
 // console.log(demoArray);
 shuffle(demoArray);
 // console.log(demoArray);
@@ -92,8 +93,8 @@ shuffle(demoArray);
 // console.log(demoArray);
 // console.log("nbr carte pioche" + demoArray.length);
 
-var player1 = createPlayer("Player1",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
-var player2 = createPlayer("Player2",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
+const player1 = createPlayer("Player1",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
+const player2 = createPlayer("Player2",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
 // str = JSON.stringify(player1);
 // console.log(str); // Logs output to dev tools console.
 // console.log(player1.table3Carte)
@@ -105,10 +106,10 @@ console.log(nextPlayer());
 
 
 
-var carte = picksCards(1,demoArray);
-console.log("pioche une crtes : "  + carte  );
-console.log("carte jouable dessus : " + cardsPlayable(carte));
-//fin partie test
+const carte = picksCards(1,demoArray);
+console.log(`pioche une crtes : ${   carte}`  );
+console.log(`carte jouable dessus : ${  cardsPlayable(carte)}`);
+// fin partie test
 
 export default index.js;
 
