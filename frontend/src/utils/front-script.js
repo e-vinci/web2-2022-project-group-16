@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-cycle, import/no-import-module-exports, import/named
 const orianterObjet = require('../../../api/routes/orianterObjet');
-
-const STORE_NAME = 'usertestuser';
+const auths = require('./auths')
 
 const nbrPlayer = 2;
 const danish = new orianterObjet.Danish(nbrPlayer);
@@ -22,25 +21,8 @@ function clickOnCard() {
 
 
           console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
-            
-          // const username = auths.getAuthenticatedUser();
-          console.log("PLAYER NAME : --------")
-          console.log(sessionStorage.getItem(STORE_NAME));
 
-          /* const options = {
-              method: 'POST',
-              body: JSON.stringify({
-                username.username
-              }),
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            };
-
-
-          const response = await fetch('/winGame') */
-
-  
+          
           cardPlay(number, type, idJoueur);
       });
   })
@@ -553,7 +535,7 @@ console.log("---------- nouveau tour -------------");
 
 };
 
-function cardPlay(number, type, idJoueur) {
+async function cardPlay(number, type, idJoueur) {
     console.log(`c'est le tour de : ${  danish.indexOfActualPlayer}`);
     console.log(`indice jouer = ${  idJoueur}`);
     console.log(`nombre : ${  number}`)
@@ -682,23 +664,28 @@ function cardPlay(number, type, idJoueur) {
         if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
             danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
             console.log("a gagner : ");
-            /*
-            console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
-            
+
+            const userGlobal = auths.getAuthenticatedUser();
+            console.log("PLAYER NAME :")
+            console.log(userGlobal.username);
+
+            const {username} = userGlobal;
 
             const options = {
                 method: 'POST',
                 body: JSON.stringify({
-                  username.username
+                    username
                 }),
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
-              };
+                };
 
 
-            const response = await fetch('/winGame')
-            */
+            const response = await fetch(`${process.env.API_BASE_URL}/score/winGame`,options) 
+
+            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+            
             return;
         }
         console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);

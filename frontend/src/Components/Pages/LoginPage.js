@@ -13,7 +13,7 @@ const LoginPage = () => {
   ${Button('login page','/',backBtn)}
   </div>
   </header>
-  <div id="game" class="d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center">
     <div id="main-menu d-flex">
     <div class="row">
         <div class="col-12 text-center"><h2>Log In</h2></div>
@@ -33,12 +33,36 @@ const LoginPage = () => {
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 
+  // eslint-disable-next-line no-use-before-define
+  createBodyLogin();
+
   GetButtons();
 };
 
+const createBodyLogin = () => {
+const main = document.querySelector('main');
 const form = document.createElement('form');
+const x = document.createElement("input");
+x.setAttribute("type", "text");
+x.className = "email-input";
+const y = document.createElement("input");
+y.setAttribute("type", "password");
+y.className = "password-input";
+
+const z = document.createElement("input");
+z.setAttribute("type", "submit");
+z.className = "btn-submit";
+
+main.appendChild(form)
+form.appendChild(x)
+form.appendChild(y)
+form.appendChild(z)
+
 console.log(form);
 form.addEventListener('submit', onLogin);
+
+}
+
 async function onLogin(e) {
   e.preventDefault();
 
