@@ -55,11 +55,13 @@ function register(username, password){
 }
 
 function findAUser(userName){
-    const users = parse(jsonDbPath);
+    const users = parse(jsonDbPath); // recherche dans la base de donné
     const indexOfUser = users.findIndex((user) => user.username === userName);
     if (indexOfUser < 0) return undefined;
     return users[indexOfUser];
 }
+
+
 
 function getNextIdUser() {
     const users = parse(jsonDbPath);
@@ -84,5 +86,7 @@ function allPlayer(){
     login,
     register,
     findAUser,
-    allPlayer
+    allPlayer,
+    
+
   }
