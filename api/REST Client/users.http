@@ -1,4 +1,50 @@
 @baseUrl = http://localhost:3000
 
-### Read all users
-GET {{baseUrl}}/users
+### Read all USER
+GET {{baseUrl}}/auths/get
+
+### Try to login an unknow user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"Martin",
+    "password":"1"
+}
+
+### Create the manager user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"Dorian",
+    "password":"1"
+}
+
+### ADD WIN
+PATCH {{baseUrl}}/score/winGame
+Content-Type: application/json
+
+{
+    "username":"Julien"
+}
+
+### ADD Lose
+POST {{baseUrl}}/score/loseGame
+Content-Type: application/json
+
+{
+    "username":"Julien"
+}
+
+### Number game
+POST {{baseUrl}}/score/numberGame
+Content-Type: application/json
+
+{
+    "username":"Martin"
+}
+
+### SORT
+GET {{baseUrl}}/score/listOrder
+

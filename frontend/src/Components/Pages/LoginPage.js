@@ -17,7 +17,7 @@ const LoginPage = () => {
     <div id="main-menu d-flex">
     <div class="row">
         <div class="col-12 text-center"><h2>Log In</h2></div>
-        <form>
+        <form method="POST">
         <div class="form-group pb-2">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="username" aria-describedby="emailHelp">
@@ -36,65 +36,8 @@ const LoginPage = () => {
   GetButtons();
 };
 
-// const LoginPage = () => {
-//   clearPage();
-//   renderPageTitle('Login');
-//   renderRegisterForm();
-// };
-
-// function renderRegisterForm() {
-//   const main = document.querySelector('main');
-
-//   form.className = 'p-5';
-//   const username = document.createElement('input');
-//   username.type = 'text';
-//   username.id = 'username';
-//   username.placeholder = 'username';
-//   username.required = true;
-//   username.className = 'form-control mb-3';
-//   const password = document.createElement('input');
-//   password.type = 'password';
-//   password.id = 'password';
-//   password.required = true;
-//   password.placeholder = 'password';
-//   password.className = 'form-control mb-3';
-//   const submit = document.createElement('input');
-//   submit.value = 'Login';
-//   submit.type = 'submit';
-//   submit.className = 'btn btn-info';
-
-//   const formCheckWrapper = document.createElement('div');
-//   formCheckWrapper.className = 'mb-3 form-check';
-
-//   const rememberme = document.createElement('input');
-//   rememberme.type = 'checkbox';
-//   rememberme.className = 'form-check-input';
-//   rememberme.id = 'rememberme';
-//   const remembered = getRememberMe();
-//   rememberme.checked = remembered;
-//   rememberme.addEventListener('click', onCheckboxClicked);
-
-//   const checkLabel = document.createElement('label');
-//   checkLabel.htmlFor = 'rememberme';
-//   checkLabel.className = 'form-check-label';
-//   checkLabel.textContent = 'Remember me';
-
-//   formCheckWrapper.appendChild(rememberme);
-//   formCheckWrapper.appendChild(checkLabel);
-
-//   form.appendChild(username);
-//   form.appendChild(password);
-//   form.appendChild(formCheckWrapper);
-//   form.appendChild(submit);
-//   main.appendChild(form);
-
-// }
-
-// function onCheckboxClicked(e) {
-//   setRememberMe(e.target.checked);
-// }
-
 const form = document.createElement('form');
+console.log(form);
 form.addEventListener('submit', onLogin);
 async function onLogin(e) {
   e.preventDefault();
@@ -119,7 +62,7 @@ async function onLogin(e) {
 
   const authenticatedUser = await response.json();
 
-  // console.log('Authenticated user : ', authenticatedUser);
+  console.log('Authenticated user : ', authenticatedUser);
 
   setAuthenticatedUser(authenticatedUser);  
 
