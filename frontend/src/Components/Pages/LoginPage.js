@@ -17,7 +17,7 @@ const LoginPage = () => {
     <div id="main-menu d-flex">
     <div class="row">
         <div class="col-12 text-center"><h2>Log In</h2></div>
-        <form method="POST">
+        <form method="POST" class="displayNone">
         <div class="form-group pb-2">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" id="username" aria-describedby="emailHelp">
@@ -27,11 +27,12 @@ const LoginPage = () => {
           <input type="password" class="form-control" id="password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+      </form></div>
+      <button data-uri="/register" class="">Register page</button>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>
+    `;
 
   // eslint-disable-next-line no-use-before-define
   createBodyLogin();
@@ -40,18 +41,21 @@ const LoginPage = () => {
 };
 
 const createBodyLogin = () => {
-const main = document.querySelector('main');
+const Realmain = document.querySelector('main');
+const main = document.querySelector('div.row');
 const form = document.createElement('form');
 const x = document.createElement("input");
 const labelx = document.createElement("label");
 x.setAttribute("type", "text");
-labelx.innerHTML = "Entrez votre pseudo";
+labelx.innerHTML = "Insert your pseudo";
 x.className = "email-input";
 const y = document.createElement("input");
 const labely = document.createElement("label");
 y.setAttribute("type", "password");
-labely.innerHTML = "Entrez votre mot de passe";
+labely.innerHTML = "Insert your password";
 y.className = "password-input";
+form.className = "form-danish";
+Realmain.className = "form-page";
 
 const z = document.createElement("input");
 z.setAttribute("type", "submit");
@@ -97,6 +101,15 @@ async function onLogin(e) {
   setAuthenticatedUser(authenticatedUser);  
 
   Navigate('/');
+}
+
+// eslint-disable-next-line no-unused-vars
+const footerInfo = () => {
+  const main = document.querySelector('main');
+  main.innerHTML += `</div>
+    </div>
+  </div>
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 }
 
 export default LoginPage;
