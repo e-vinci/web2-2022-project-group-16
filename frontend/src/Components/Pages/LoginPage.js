@@ -31,7 +31,7 @@ const LoginPage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 
   GetButtons();
 };

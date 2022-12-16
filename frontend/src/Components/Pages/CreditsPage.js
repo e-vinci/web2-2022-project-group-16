@@ -33,7 +33,7 @@ const CreditsPage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"></div></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"><div id="rules"></div></footer>`;
   GetButtons();
 };
 

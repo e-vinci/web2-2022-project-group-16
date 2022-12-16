@@ -9,7 +9,7 @@ const NewGamePage = () => {
   main.innerHTML = `
   <header class="px-3 pt-3 d-flex justify-content-between align-items-center">
   ${Button('login page','/',backBtn)}
-  <div id="rules"><button data-uri="/login"><img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button"></button></div>
+  <div id="rules"><button data-uri="/login"><img class="button ms-2" src="${menuBtn}" alt="rules button"></button></div>
   </header>
   <div id="game" class="d-flex justify-content-center align-items-center">
     <div id="main-menu d-flex">
@@ -20,7 +20,7 @@ const NewGamePage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
   GetButtons();
 };
 
