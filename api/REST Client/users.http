@@ -17,8 +17,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"Dorian",
-    "password":"1"
+    "username":"ia",
+    "password":"password"
 }
 
 ### ADD WIN

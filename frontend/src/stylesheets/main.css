@@ -247,3 +247,10 @@ input:focus{
     color:gray;
     pointer-events: none;
 }
+#iaGame .card-hand .cards{
+    background-position-y:0px;
+    background-position-x:0px;
+}
+#confetti{
+    position: absolute;
+}

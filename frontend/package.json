@@ -31,6 +31,8 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.1",
-    "gh-pages": "^4.0.0"
+    "confetti-js": "^0.0.18",
+    "gh-pages": "^4.0.0",
+    "js-confetti": "^0.11.0"
   }
 }

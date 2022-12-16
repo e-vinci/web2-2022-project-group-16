@@ -6,6 +6,9 @@ import GetButtons from '../Router/GetButtons';
 // import rulesBtn from '../../img/rules.png';
 import { run, clickOnCard } from '../../utils/front-script';
 
+// eslint-disable-next-line import/order
+import JSConfetti from 'js-confetti';
+
 
 
 const GamePage = () => {
@@ -43,8 +46,10 @@ const createBody = () => {
   const carduserIa = document.createElement("div"); 
   const cardhandIa = document.createElement("div"); 
   const pile = document.createElement("div");
+  const canvas = document.createElement("canvas");
 
   // assigning class name to the new div
+  canvas.id = "confetti";
   game.id = "game";
   pile.id = "pile";
   carduser.className = "card-user";
@@ -83,7 +88,11 @@ const createBody = () => {
   carduser.appendChild(cardhand)
   playerGame.appendChild(cardback);
   playerGame.appendChild(cardvisible);
+  main.appendChild(canvas);
 
+
+  const jsConfetti = new JSConfetti({ target: canvas })
+  jsConfetti.addConfetti();
 }
 
 const mainHeader = () => {

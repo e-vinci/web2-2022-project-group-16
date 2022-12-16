@@ -43,10 +43,14 @@ const createBodyLogin = () => {
 const main = document.querySelector('main');
 const form = document.createElement('form');
 const x = document.createElement("input");
+const labelx = document.createElement("label");
 x.setAttribute("type", "text");
+labelx.innerHTML = "Entrez votre pseudo";
 x.className = "email-input";
 const y = document.createElement("input");
+const labely = document.createElement("label");
 y.setAttribute("type", "password");
+labely.innerHTML = "Entrez votre mot de passe";
 y.className = "password-input";
 
 const z = document.createElement("input");
@@ -54,7 +58,9 @@ z.setAttribute("type", "submit");
 z.className = "btn-submit";
 
 main.appendChild(form)
+form.appendChild(labelx)
 form.appendChild(x)
+form.appendChild(labely)
 form.appendChild(y)
 form.appendChild(z)
 

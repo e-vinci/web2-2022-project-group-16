@@ -6,7 +6,7 @@ const jsonDbPath = path.join(__dirname, '/../data/users.json');
 
 function win(player){
     const playerFoundWin = findUserUpdateWin(player);
-    return playerFoundWin; 
+    return playerFoundWin;
 }
 
 function lose(player){
