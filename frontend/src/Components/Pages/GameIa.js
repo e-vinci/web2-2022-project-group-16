@@ -3,7 +3,7 @@
 import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
-import rulesBtn from '../../img/rules.png';
+// import rulesBtn from '../../img/rules.png';
 import { run, clickOnCard } from '../../utils/front-script';
 
 
@@ -106,7 +106,7 @@ const mainFooter = () => {
   const main = document.querySelector('main');
 
   main.innerHTML += `
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a class="rule-btn">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>
+  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a class="rule-btn">rules</a><img id="rules-btn" class="ms-2" src="" alt="rules button"></div></footer>
   `;
 
   const rule = document.querySelector('div#rules');
