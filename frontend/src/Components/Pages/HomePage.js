@@ -6,7 +6,7 @@ import GetButtons from '../Router/GetButtons';
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
-  <header class="px-3 pt-3 d-flex justify-content-end align-items-center"><div id="rules">
+  <header class="px-3 pt-3 d-flex justify-content-end align-items-center"><div id="menu">
   <a href="">
     <img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button">
   </a>
@@ -21,9 +21,23 @@ const HomePage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a href="#">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>`;
+  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a class="rule-btn">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>`;
 
   GetButtons();
+
+  const rule = document.querySelector('div#rules');
+  const modal = document.getElementById("myModal");
+  rule.addEventListener("click", (event)=> {
+    event.preventDefault();
+    modal.style.display = "flex";
+    console.log("clicckkkkk")
+  });
+  const closeModal = document.querySelector("div#myModal .close");
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+
+
 };
 
 export default HomePage;

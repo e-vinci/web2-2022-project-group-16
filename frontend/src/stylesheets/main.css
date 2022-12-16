@@ -72,3 +72,145 @@ h2{
 #credits p{
     margin:0;
 }
+
+
+/* card display */
+
+.card-content{
+    width: 46px;
+    height: 63px;
+    overflow: hidden;
+}
+.cards{
+    min-width: 715px;
+    min-height:200px;
+    background-image: url("../img/Cards.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+#playerGame .card-content.isPlayable:hover {
+    margin-bottom: 15px;
+    transition: .3s;
+    cursor: pointer
+}
+.cards.hearts{
+    background-position-y: 0px;
+}
+.cards.clubs{
+    background-position-y: -63px;
+}
+.cards.diamonds{
+    background-position-y: -126px;
+}
+.cards.spades{
+    background-position-y: -189px;
+}
+.cards.two{
+    background-position-x: -47px;
+}
+.cards.three{
+    background-position-x: -94px;
+}
+.cards.four{
+    background-position-x: -140px;
+}
+.cards.five{
+    background-position-x: -187px;
+}
+.cards.six{
+    background-position-x: -235px;
+}
+.cards.seven{
+    background-position-x: -282px;
+}
+.cards.eight{
+    background-position-x: -328px;
+}
+.cards.nine{
+    background-position-x: -375px;
+}
+.cards.ten{
+    background-position-x: -422px;
+}
+.cards.jack {
+    background-position-x: -470px;
+}
+.cards.queen {
+    background-position-x: -516px;
+}
+.cards.king {
+    background-position-x: -563px;
+}
+.cards.ace {
+    background-position-x: -610px;
+}
+
+#game{
+    position: relative;
+}
+.card-hand, .card-back, .card-visible{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.card-back, .card-visible{
+    bottom: 80px;
+}
+
+.card-visible{
+    bottom: 90px;
+}
+#iaGame, #playerGame {
+    position: absolute;
+    width: 100%;
+}
+#iaGame {
+    top:50%;
+}
+#playerGame {
+    bottom:0%;
+}
+#iaGame .card-user {
+    position: absolute;
+    width: 100%;
+    top: -155px;
+}
+#pile{
+    position: absolute;
+    top: 44%;
+    text-align: center;
+    left: 47%;
+}
+.card-back .card-content .cards {
+    background-position-y: 0px;
+    background-position-x: 0px;
+}
+.back-btn-game{
+    display: none;
+}
+#rules{
+    cursor: pointer;
+}
+.global-modal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.content-modal .close{
+    cursor: pointer;
+}
+.content-modal {
+    max-width: 780px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    max-height: 100%;
+}
+
