@@ -1,14 +1,14 @@
 import menuBtn from '../../img/menu.png';
 import backBtn from '../../img/back.png';
 import GetButtons from '../Router/GetButtons';
-import rulesBtn from '../../img/rules.png';
+import Button from '../Buttons/Button';
 
 const CreditsPage = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
   <header class="px-3 pt-3 d-flex justify-content-between align-items-center">
-  <button data-uri="/" class="navigation-btn"><img id="rules-btn" class="ms-2" src="${backBtn}" alt="rules button"></button>
-  <a href="#"><img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button"></a>
+  ${Button('login page','/',backBtn)}
+  ${Button('login page','/login',menuBtn)}
   </header>
   <div id="game" class="d-flex justify-content-center align-items-center">
     <div class="d-flex">
@@ -33,8 +33,7 @@ const CreditsPage = () => {
     </div>
     </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a class="rule-btn">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>`;
-
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"><div id="rules"></div></footer>`;
   GetButtons();
 
   const rule = document.querySelector('div#rules');

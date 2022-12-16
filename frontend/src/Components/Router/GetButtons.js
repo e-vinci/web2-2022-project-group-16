@@ -10,6 +10,10 @@
  const GetButtons = () => {
     const buttons = document.querySelectorAll('button');
     Array.from(buttons).forEach((elem) => {
+      elem.addEventListener('mousedown', () => {
+        const audio = document.getElementsByTagName("audio")[0];
+        audio.play();
+      })
       elem.addEventListener('click', () => {
         const uri = elem?.dataset?.uri;
         Navigate(uri);
