@@ -649,6 +649,7 @@ function cardPlay(number, type, idJoueur) {
                     }else {
                         setTimeout(GetDiscardPile, 500);
                         renderCardsHidden();
+                        renderPile();
                     }
                     
                 }
