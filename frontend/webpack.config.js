@@ -58,7 +58,7 @@ module.exports = {
         type: 'asset/resource',
       },
      {
-       test: /\.(woff|woff2|eot|ttf|otf)$/i,
+       test: /\.(woff|woff2|eot|ttf|otf|wav)$/i,
        type: 'asset/resource',
      },
       // in html file, emits files in output directory

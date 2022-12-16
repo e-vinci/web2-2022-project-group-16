@@ -35,7 +35,7 @@ footer{
     width:100%;
 }
 
-a, button, h2, p{
+a, button, h2, p, label, input{
     background-color: transparent;
     border:none;
     paint-order: stroke fill;
@@ -71,4 +71,34 @@ h2{
 }
 #credits p{
     margin:0;
+}
+
+label{
+    font-size:15px;
+    text-align: left;
+}
+
+.form-control{
+    background-color: transparent;
+    border:3px dashed white;
+    border-radius: 0;
+    padding:0.5rem;
+    outline:transparent;
+    color: white!important;
+}
+input:focus{
+    outline:none!important;
+    background-color: transparent!important;
+    box-shadow:none!important;
+    border-color:white!important;
+    color: white!important;
+}
+
+#volume-slider{
+    width:100px;
+}
+
+.disabled{
+    color:gray;
+    pointer-events: none;
 }
