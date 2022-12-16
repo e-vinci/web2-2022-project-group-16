@@ -13,10 +13,11 @@ const GamePage = () => {
   mainHeader();
   // eslint-disable-next-line no-use-before-define
   createBody();
-  GetButtons();
+  
   run();
   // eslint-disable-next-line no-use-before-define
   mainFooter();
+  GetButtons();
   clickOnCard();
   console.log(`test`);
 
@@ -90,18 +91,36 @@ const mainHeader = () => {
 
     main.innerHTML = `
     <header class="px-3 pt-3 d-flex justify-content-between align-items-center">
-    <button data-uri="/" class="navigation-btn"><img id="rules-btn" class="ms-2" src="${backBtn}" alt="rules button"></button>
-    <a href="#"><img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button"></a>
+
+    <button data-uri="/" class="navigation-btn back-btn-game"><img id="rules-btn" class="ms-2" src="${backBtn}" alt="rules button"></button>
+
+    <a href="/" class="rule-btn"><img id="rules-btn" class="ms-2" src="${menuBtn}" alt="rules button"></button>
+
     </header>
     `;
+    
+
 }
 
 const mainFooter = () => {
   const main = document.querySelector('main');
 
   main.innerHTML += `
-  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a href="#">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>
+  <footer class="px-3 pb-3 d-flex justify-content-end align-items-center"><div id="rules"><a class="rule-btn">rules</a><img id="rules-btn" class="ms-2" src="${rulesBtn}" alt="rules button"></div></footer>
   `;
+
+  const rule = document.querySelector('div#rules');
+  const modal = document.getElementById("myModal");
+  rule.addEventListener("click", (event)=> {
+    event.preventDefault();
+    modal.style.display = "flex";
+    console.log("clicckkkkk")
+  });
+  const closeModal = document.querySelector("div#myModal .close");
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+  
 }
 
 export default GamePage;
