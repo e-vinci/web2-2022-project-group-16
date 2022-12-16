@@ -8,7 +8,7 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"Julien",
+    "username":"Martin",
     "password":"1"
 }
 
@@ -17,7 +17,7 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"Julien",
+    "username":"Dorian",
     "password":"1"
 }
 
@@ -29,19 +29,22 @@ Content-Type: application/json
     "username":"Julien"
 }
 
-### ADD WIN
+### ADD Lose
 POST {{baseUrl}}/score/loseGame
 Content-Type: application/json
 
 {
-    "username":"B"
+    "username":"Julien"
 }
 
-### ADD WIN
+### Number game
 POST {{baseUrl}}/score/numberGame
 Content-Type: application/json
 
 {
-    "username":"B"
+    "username":"Martin"
 }
+
+### SORT
+GET {{baseUrl}}/score/listOrder
 
