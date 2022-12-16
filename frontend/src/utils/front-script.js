@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-cycle, import/no-import-module-exports, import/named
 const orianterObjet = require('../../../api/routes/orianterObjet');
 
+const STORE_NAME = 'usertestuser';
+
 const nbrPlayer = 2;
 const danish = new orianterObjet.Danish(nbrPlayer);
 
@@ -17,6 +19,27 @@ function clickOnCard() {
           console.log(user)
           const idJoueur = user?.dataset?.player;
           console.log(`${idJoueur}`);
+
+
+          console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
+            
+          // const username = auths.getAuthenticatedUser();
+          console.log("PLAYER NAME : --------")
+          console.log(sessionStorage.getItem(STORE_NAME));
+
+          /* const options = {
+              method: 'POST',
+              body: JSON.stringify({
+                username.username
+              }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            };
+
+
+          const response = await fetch('/winGame') */
+
   
           cardPlay(number, type, idJoueur);
       });
@@ -659,7 +682,23 @@ function cardPlay(number, type, idJoueur) {
         if(danish.tablePlayerGame[danish.indexOfActualPlayer].table3carteHiddenPlayer.length === 0){
             danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
             console.log("a gagner : ");
+            /*
             console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
+            
+
+            const options = {
+                method: 'POST',
+                body: JSON.stringify({
+                  username.username
+                }),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              };
+
+
+            const response = await fetch('/winGame')
+            */
             return;
         }
         console.log(`C EST LA PIIIILLLLLLEEEESSS : ${danish.discardPile}`);

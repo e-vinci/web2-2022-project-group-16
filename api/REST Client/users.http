@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### ADD WIN
-PATCH {{baseUrl}}/score/winGame
+POST {{baseUrl}}/score/winGame
 Content-Type: application/json
 
 {

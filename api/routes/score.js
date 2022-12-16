@@ -4,7 +4,7 @@ const { win,lose, numberGamePlayer, sortPlayer} = require('../models/score');
 
 const router = express.Router();
 
-router.patch('/winGame',(req,res) => {
+router.post('/winGame',(req,res) => {
     const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
     // if (!username) return res.sendStatus(400); // 400 Bad Reques
       const player = win(username);
