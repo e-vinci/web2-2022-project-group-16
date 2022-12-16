@@ -106,7 +106,7 @@ function createPlayer (pseudo,tableCards, table3Cards, table3CardsHidden) {
         }
         return player;
 }
-const tablePlayerGame = [];
+// const tablePlayerGame = [];
 
 function addPlayerGame (player) {
     tablePlayerGame.push(player);
