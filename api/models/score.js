@@ -27,11 +27,7 @@ function sortPlayer(){
     const tableSortPlayer = allPlayer.slice();
     tableSortPlayer.sort((a,b) => {
         // Calcule la somme des propriétés value1 et value2 pour chaque objet
-        // const totA = a.scoreWin + b.scoreLose;
-        // const sumA = a.scoreWin * totA;
-        // const totb = a.scoreWin + b.scoreLose;
-        // const sumB = b.scoreWin * totb;
-
+        
         // --------------------- LIBRAIRIE -----------------------------
         const totA = _.add(a.scoreWin,b.scoreLose);
         const sumA = _.multiply(a.scoreWin,totA);  
