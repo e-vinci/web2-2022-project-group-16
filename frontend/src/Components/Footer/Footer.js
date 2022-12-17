@@ -5,7 +5,7 @@ import playBtnPressed from '../../img/play-pressed.png';
 // import audio from '../../audio/select.wav';
 
 const Footer = (audio) => {
-    document.querySelector('footer').innerHTML = `<div><button id="pause-music"><img class="button" src="${pauseBtn}" alt="pause button"><audio preload="auto"><source src="${audio}" type="audio/wav"></audio></button><input type="range" id="volume-slider"></div><div><button data-toggle="modal" data-target="#myModal" id="myModal">How to play</button></div>`;
+    document.querySelector('footer').innerHTML = `<div><button id="pause-music"><img class="button" src="${pauseBtn}" alt="pause button"><audio preload="auto"><source src="${audio}" type="audio/wav"></audio></button><input type="range" id="volume-slider"></div><div><button id="myModal">How to play</button></div>`;
     const volume = document.getElementById("volume-slider");
     volume.addEventListener('change', (e) => {
         // eslint-disable-next-line no-param-reassign

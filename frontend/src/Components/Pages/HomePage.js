@@ -2,9 +2,7 @@ import logo from '../../img/logo.svg';
 import menuBtn from '../../img/menu.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
-
-// import RulesModal from '../Modal/RulesModal';
-// import Footer from '../Footer/Footer';
+import RulesModal from '../Modal/RulesModal';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -21,21 +19,15 @@ const HomePage = () => {
     </div>
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
-
+  RulesModal();
   GetButtons();
-  // RulesModal();
   // eslint-disable-next-line no-use-before-define
   classement();
 };
 
 const classement = async () => {
-  
   const response = await fetch(`${process.env.API_BASE_URL}/score/listOrder`, {method: 'GET'});
-
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-  console.log("REPOONSE INFO JOEURS")
-  console.log(response)
   
 }
 

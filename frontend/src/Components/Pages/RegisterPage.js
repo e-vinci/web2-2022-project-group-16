@@ -70,10 +70,8 @@ function onCheckboxClicked(e) {
 
 async function onRegister(e) {
   e.preventDefault();
-
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
-
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -84,17 +82,10 @@ async function onRegister(e) {
       'Content-Type': 'application/json',
     },
   };
-
   const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
-
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
   const authenticatedUser = await response.json();
-
-  // console.log('Newly registered & authenticated user : ', authenticatedUser);
-
   setAuthenticatedUser(authenticatedUser);
-
   Navigate('/');
 }
 

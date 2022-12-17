@@ -13,6 +13,7 @@ const LoginPage = () => {
   ${Button('login page','/',backBtn)}
   </div>
   </header>
+  <div id="game">
   <div class="d-flex justify-content-center align-items-center">
     <div id="main-menu d-flex">
     <div class="row">
@@ -30,6 +31,7 @@ const LoginPage = () => {
       </form></div>
       <button data-uri="/register" class="">Register page</button>
     </div>
+  </div>
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>
     `;
@@ -67,8 +69,6 @@ form.appendChild(x)
 form.appendChild(labely)
 form.appendChild(y)
 form.appendChild(z)
-
-console.log(form);
 form.addEventListener('submit', onLogin);
 
 }
@@ -91,15 +91,9 @@ async function onLogin(e) {
   };
 
   const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
-
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
   const authenticatedUser = await response.json();
-
-  console.log('Authenticated user : ', authenticatedUser);
-
   setAuthenticatedUser(authenticatedUser);  
-
   Navigate('/');
 }
 

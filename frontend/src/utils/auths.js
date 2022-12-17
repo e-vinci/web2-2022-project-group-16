@@ -45,11 +45,4 @@ function setRememberMe(remembered) {
   localStorage.setItem(REMEMBER_ME, rememberedSerialized);
 }
 
-export {
-  getAuthenticatedUser,
-  setAuthenticatedUser,
-  isAuthenticated,
-  clearAuthenticatedUser,
-  getRememberMe,
-  setRememberMe,
-};
+module.exports = {getAuthenticatedUser,setAuthenticatedUser,isAuthenticated,clearAuthenticatedUser,getRememberMe,setRememberMe};

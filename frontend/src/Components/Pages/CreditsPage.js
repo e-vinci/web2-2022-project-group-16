@@ -35,18 +35,6 @@ const CreditsPage = () => {
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"><div id="rules"></div></footer>`;
   GetButtons();
-
-  const rule = document.querySelector('div#rules');
-  const modal = document.getElementById("myModal");
-  rule.addEventListener("click", (event)=> {
-    event.preventDefault();
-    modal.style.display = "flex";
-    console.log("clicckkkkk")
-  });
-  const closeModal = document.querySelector("div#myModal .close");
-  closeModal.onclick = function() {
-    modal.style.display = "none";
-  }
 };
 
 export default CreditsPage;

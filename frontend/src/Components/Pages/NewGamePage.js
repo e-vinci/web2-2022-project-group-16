@@ -15,26 +15,13 @@ const NewGamePage = () => {
     <div id="main-menu d-flex">
     <div class="row text-center">
         <div class="col-12"><h2>Choose Game Mode</h2></div>
-        <div class="col-12"><button data-uri="/game-ia" class="">Player VS A.I.</button></div>
+        <div class="col-12"><button data-uri="/play" class="">Player VS A.I.</button></div>
         <div class="col-12"><a class="disabled" href="#">Player VS Players</a></div>
     </div>
     </div>
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
   GetButtons();
-
-  const rule = document.querySelector('div#rules');
-  const modal = document.getElementById("myModal");
-  rule.addEventListener("click", (event)=> {
-    event.preventDefault();
-    modal.style.display = "flex";
-    console.log("clicckkkkk")
-  });
-  const closeModal = document.querySelector("div#myModal .close");
-  closeModal.onclick = function() {
-    modal.style.display = "none";
-  }
-
 };
 
 export default NewGamePage;
