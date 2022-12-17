@@ -5,24 +5,24 @@ body.addEventListener('click', startGame);
 
 let deck = [];
 let discardPile = [];
-let tablePlayerGame = [];
-let acttualPlayer = 0;
+const tablePlayerGame = [];
+const actualPlayer = 0;
 
 
 function startGame() {
     deck = initgame();
     discardPile = {color: null,value: 2}
-    let playerMoi = createPlayer('moi',picksCards(3,deck),picksCards(3,deck),picksCards(3,deck));
+    const playerMoi = createPlayer('moi',pickCards(3,deck),pickCards(3,deck),pickCards(3,deck));
     addPlayerGame(playerMoi);
-    let bot = createPlayer('bot',picksCards(3,deck),picksCards(3,deck),picksCards(3,deck));
+    const bot = createPlayer('bot',pickCards(3,deck),pickCards(3,deck),pickCards(3,deck));
     addPlayerGame(bot);
 
-    playing(deck,discardPile,tablePlayerGame,acttualPlayer);
+    playing(deck,discardPile,tablePlayerGame,actualPlayer);
 }
 
-function playing(deck,discardPile,tablePlayerGame,acttualPlayer){
-    let player = tablePlayerGame[acttualPlayer];
-    let playbleCards = playbleCardsInHands(player.table3CardsPlayer);
+function playing(deck,discardPile,tablePlayerGame,actualPlayer){
+    const player = tablePlayerGame[actualPlayer];
+    const playbleCards = playbleCardsInHands(player.table3CardsPlayer);
     console.log(playbleCards);
 
 }
@@ -60,7 +60,7 @@ function shuffle (jeu) {
 };
 
 
-function picksCards (qty,game) {
+function pickCards (qty,game) {
     const cardsTake = [] ;
     const gameCard = game;
     for(let i = 0 ; i < qty ; i+=1){
@@ -129,13 +129,13 @@ const demoArray = initgame();
 // console.log(demoArray);
 shuffle(demoArray);
 // console.log(demoArray);
-// console.log("pioche une carte : " + picksCards(1,demoArray));
-// console.log("pioche deux carte : " + picksCards(2,demoArray));
+// console.log("pioche une carte : " + pickCards(1,demoArray));
+// console.log("pioche deux carte : " + pickCards(2,demoArray));
 // console.log(demoArray);
 // console.log("nbr carte pioche" + demoArray.length);
 
-const player1 = createPlayer("Player1",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
-const player2 = createPlayer("Player2",picksCards(3,demoArray),picksCards(3,demoArray),picksCards(3,demoArray));
+const player1 = createPlayer("Player1",pickCards(3,demoArray),pickCards(3,demoArray),pickCards(3,demoArray));
+const player2 = createPlayer("Player2",pickCards(3,demoArray),pickCards(3,demoArray),pickCards(3,demoArray));
 // str = JSON.stringify(player1);
 // console.log(str); // Logs output to dev tools console.
 // console.log(player1.table3Carte)
@@ -147,7 +147,7 @@ console.log(nextPlayer());
 
 
 
-const carte = picksCards(1,demoArray);
+const carte = pickCards(1,demoArray);
 console.log(`pioche une crtes : ${   carte}`  );
 console.log(`carte jouable dessus : ${  cardsPlayable(carte)}`);
 // fin partie test

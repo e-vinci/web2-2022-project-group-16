@@ -8,7 +8,7 @@ const _ = require('lodash');
 
 function win(player){
     const playerFoundWin = findUserUpdateWin(player);
-    return playerFoundWin; 
+    return playerFoundWin;
 }
 
 function lose(player){

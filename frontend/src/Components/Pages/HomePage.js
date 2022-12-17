@@ -2,6 +2,7 @@ import logo from '../../img/logo.svg';
 import menuBtn from '../../img/menu.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
+
 // import RulesModal from '../Modal/RulesModal';
 // import Footer from '../Footer/Footer';
 
@@ -24,6 +25,19 @@ const HomePage = () => {
 
   GetButtons();
   // RulesModal();
+  // eslint-disable-next-line no-use-before-define
+  classement();
 };
+
+const classement = async () => {
+  
+  const response = await fetch(`${process.env.API_BASE_URL}/score/listOrder`, {method: 'GET'});
+
+  if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+  console.log("REPOONSE INFO JOEURS")
+  console.log(response)
+  
+}
 
 export default HomePage;

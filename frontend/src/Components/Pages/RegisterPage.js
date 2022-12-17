@@ -1,11 +1,20 @@
 import { getRememberMe, setAuthenticatedUser, setRememberMe } from '../../utils/auths';
 import { clearPage, renderPageTitle } from '../../utils/render';
 import Navigate from '../Router/Navigate';
+import backBtn from '../../img/back.png';
+import Button from '../Buttons/Button';
+import GetButtons from '../Router/GetButtons';
 
 const RegisterPage = () => {
+
   clearPage();
+  // eslint-disable-next-line no-const-assign
+  const mainInfo = document.querySelector('main');
+  mainInfo.innerHTML +=  `<div id="back"> ${Button('login page','/login',backBtn)} </div> `;
   renderPageTitle('Register');
   renderRegisterForm();
+
+  GetButtons();
 };
 
 function renderRegisterForm() {

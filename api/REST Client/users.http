@@ -3,7 +3,7 @@
 ### Read all USER
 GET {{baseUrl}}/auths/get
 
-### Try to login an unknow user
+### Try to login an unknown user
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
@@ -17,8 +17,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"Dorian",
-    "password":"1"
+    "username":"ia",
+    "password":"password"
 }
 
 ### ADD WIN

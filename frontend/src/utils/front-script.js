@@ -1,6 +1,7 @@
-// eslint-disable-next-line import/no-cycle, import/no-import-module-exports, import/named
+
+
 const orianterObjet = require('../../../api/routes/orianterObjet');
-const auths = require('./auths')
+const auths = require('./auths');
 
 const nbrPlayer = 2;
 const danish = new orianterObjet.Danish(nbrPlayer);
@@ -22,7 +23,7 @@ function clickOnCard() {
 
           console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
 
-          
+
           cardPlay(number, type, idJoueur);
       });
   })
@@ -417,7 +418,9 @@ function IAConditionPlay(tableToPlay){
 
 }
 
-function IAPlaye() {
+
+
+async function IAPlaye() {
     let canChangePlayer ;
     const index = 0;
     let canWin = false;
@@ -455,6 +458,46 @@ function IAPlaye() {
         danish.tablePlayerGame[danish.indexOfActualPlayer].win = true;
         console.log("a gagner : ");
         console.log(danish.tablePlayerGame[danish.indexOfActualPlayer].idPlayer);
+
+
+        const usernameIa = "ia";
+
+        const optionsGagner = {
+            method: 'POST',
+            body: JSON.stringify({
+                usernameIa
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+
+        const responseWin = await fetch(`${process.env.API_BASE_URL}/score/winGame`,optionsGagner) 
+
+        if (!responseWin.ok) throw new Error(`fetch error : ${responseWin.status} : ${responseWin.statusText}`);
+
+        const userGlobal = auths.getAuthenticatedUser();
+        console.log("PLAYER NAME :")
+        console.log(userGlobal.username);
+
+        const {username} = userGlobal.username;
+
+        const optionsPerdu = {
+            method: 'POST',
+            body: JSON.stringify({
+                username
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const responseLose = await fetch(`${process.env.API_BASE_URL}/score/loseGame`,optionsPerdu) 
+
+        if (!responseLose.ok) throw new Error(`fetch error : ${responseLose.status} : ${responseLose.statusText}`);
+
+
         return;
     }
 
@@ -524,7 +567,6 @@ console.log("---------- nouveau tour -------------");
 
     setTimeout(IAPlaye, 1000);
     
-
     
     
     console.log("defausse");
@@ -669,9 +711,9 @@ async function cardPlay(number, type, idJoueur) {
             console.log("PLAYER NAME :")
             console.log(userGlobal.username);
 
-            const {username} = userGlobal;
+            const {username} = userGlobal.username;
 
-            const options = {
+            const optionsGagner = {
                 method: 'POST',
                 body: JSON.stringify({
                     username
@@ -679,12 +721,29 @@ async function cardPlay(number, type, idJoueur) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                };
+            };
 
 
-            const response = await fetch(`${process.env.API_BASE_URL}/score/winGame`,options) 
+            const responseWin = await fetch(`${process.env.API_BASE_URL}/score/winGame`,optionsGagner) 
 
-            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+            if (!responseWin.ok) throw new Error(`fetch error : ${responseWin.status} : ${responseWin.statusText}`);
+
+
+            const usernameIa = "ia";
+
+            const optionsPerdu = {
+                method: 'POST',
+                body: JSON.stringify({
+                    usernameIa
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+
+            const responseLose = await fetch(`${process.env.API_BASE_URL}/score/loseGame`,optionsPerdu) 
+
+            if (!responseLose.ok) throw new Error(`fetch error : ${responseLose.status} : ${responseLose.statusText}`);
             
             return;
         }
