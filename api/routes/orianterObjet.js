@@ -86,9 +86,9 @@ class Danish {
         }
         this.discardPile = [] ;
         this.discardPile.push(new Cards(null, null));
-        console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE")
-        console.log(this.discardPile);
-        console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE")
+        // console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE");
+        // console.log(this.discardPile);
+        // console.log("PPPPPPPPPPIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLEEEEEEEEEEEEEEE");
         this.tablePlayerGame = [];
         this.indexOfActualPlayer = 0;
         for (let i = 0; i < nbrPlayer; i++) {
@@ -96,16 +96,16 @@ class Danish {
             this.tablePlayerGame.push(player);
         };
 
-        console.log("main ia constructeur -----");
-        this.tablePlayerGame[0].tableHands.forEach(element => {
-            console.log(element);
-        });
+        // console.log("main ia constructeur -----");
+        // this.tablePlayerGame[0].tableHands.forEach(element => {
+        //     // console.log(element);
+        // });
 
-        console.log(this.tablePlayerGame[0].tableHands.length)
+        // console.log(this.tablePlayerGame[0].tableHands.length)
         
-        console.log(this.tablePlayerGame[0].tableHands);
-        console.log("main player constructeur");
-        console.log(this.tablePlayerGame[1].tableHands);
+        // console.log(this.tablePlayerGame[0].tableHands);
+        // console.log("main player constructeur");
+        // console.log(this.tablePlayerGame[1].tableHands);
 
     };
 

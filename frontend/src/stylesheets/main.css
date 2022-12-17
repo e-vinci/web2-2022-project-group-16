@@ -185,10 +185,12 @@ h2{
     top: -155px;
 }
 #pile{
+    outline:2px dashed white;
     position: absolute;
-    top: 44%;
+    top: 43%;
     text-align: center;
     left: 47%;
+    content:"?";
 }
 .card-back .card-content .cards {
     background-position-y: 0px;
@@ -269,4 +271,22 @@ main.form-page{
 }
 .displayNone{
     display:none;
+}
+#game-mat{
+    background-color: #448a3a;
+    outline: 10px solid #4E1211;
+    /* border-radius: 25px; */
+    height:300px;
+    width:500px;
+}
+#inner-mat{
+    height:40%;
+    width:70%;
+    border:2px dashed white;
+}
+#playerGame .card-visible{
+    bottom:75px;
+}
+#iaGame .card-visible{
+    bottom:78px;
 }

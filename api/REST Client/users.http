@@ -3,7 +3,7 @@
 ### Read all USER
 GET {{baseUrl}}/auths/get
 
-### Try to login an unknow user
+### Try to login an unknown user
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
