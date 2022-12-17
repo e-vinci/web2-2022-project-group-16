@@ -4,8 +4,8 @@ import Router from './Components/Router/Router';
 import sound from './audio/main_theme.wav';
 
 
-const audio = new Audio(sound);
-audio.volume = 1;
-audio.loop = true;
+ const audio = new Audio(sound);
+audio.volume = 0;
+ audio.loop = true;
 audio.play();
-Router(audio);
+ Router(audio);

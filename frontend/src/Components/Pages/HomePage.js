@@ -16,6 +16,7 @@ const HomePage = () => {
         <img id="logo" class="col-12" src="${logo}" alt="8bit danish logo">
         <div class="col-12"><button data-uri="/new-game">New Game</button></div>
         <div class="col-12"><button data-uri="/credits">Credits</button></div>
+        <div class="col-12"><button data-uri="/score">Score</button></div>
     </div>
     </div>
   </div>
