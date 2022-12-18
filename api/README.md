@@ -1,5 +1,15 @@
 
 # Boilerplate d'une RESTful API basique
+
+## ATTENTION
+- L'api ne peut pas être déployé localement sans les secrets.
+
+# DOCUMENTATION
+- Notre documentation sur l'api se trouve dans le rapport du projet sous la forme d'un tableau, il y a des requêtes http dans le REST CLIENT.
+
+
+
+
 ## Comment l'utiliser ?
 - Si vous ne l'avez pas fait, vous pouvez cloner le repo associé au boilerplate pour initier votre application : `git clone https://github.com/e-vinci/basic-api-boilerplate.git` ou `git clone https://github.com/e-vinci/basic-api-boilerplate.git nom-de-votre-projet` pour créer votre projet nommé `nom-de-votre-projet`.
 - **package.json** est le fichier de configuration de votre projet. Veuillez le mettre à jour afin de :
