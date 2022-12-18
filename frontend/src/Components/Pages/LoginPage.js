@@ -13,23 +13,12 @@ const LoginPage = () => {
   ${Button('login page','/',backBtn)}
   </div>
   </header>
-  <div id="game">
-  <div class="d-flex justify-content-center align-items-center">
+  <div id="game" class="d-flex justify-content-center align-items-center">
+  <div>
     <div id="main-menu d-flex">
     <div class="row">
-        <div class="col-12 text-center"><h2>Log In</h2></div>
-        <form method="POST" class="displayNone">
-        <div class="form-group pb-2">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="username" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group pb-2">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form></div>
-      <button data-uri="/register" class="">Register page</button>
+        <div class="col-12 text-center"><h2>Log In</h2></div></div>
+      <button id="register-btn" data-uri="/register" class="mt-3">No account yet? Register here.</button>
     </div>
   </div>
   </div>
@@ -49,19 +38,22 @@ const form = document.createElement('form');
 const x = document.createElement("input");
 const labelx = document.createElement("label");
 x.setAttribute("type", "text");
-labelx.innerHTML = "Insert your pseudo";
-x.className = "email-input";
+x.setAttribute('id','username');
+labelx.innerHTML = "Username";
+x.className = "username-input";
 const y = document.createElement("input");
 const labely = document.createElement("label");
 y.setAttribute("type", "password");
-labely.innerHTML = "Insert your password";
+y.setAttribute('id','password');
+labely.innerHTML = "Password";
 y.className = "password-input";
 form.className = "form-danish";
 Realmain.className = "form-page";
 
-const z = document.createElement("input");
+const z = document.createElement("button");
 z.setAttribute("type", "submit");
 z.className = "btn-submit";
+z.textContent = "Log In"
 
 main.appendChild(form)
 form.appendChild(labelx)
@@ -78,6 +70,8 @@ async function onLogin(e) {
 
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
+  console.log(username);
+  console.log(password);
 
   const options = {
     method: 'POST',

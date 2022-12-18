@@ -232,6 +232,9 @@ label{
     outline:transparent;
     color: white!important;
 }
+input{
+    border:2px dashed white;
+}
 input:focus{
     outline:none!important;
     background-color: transparent!important;
@@ -289,4 +292,10 @@ main.form-page{
 }
 #iaGame .card-visible{
     bottom:78px;
+}
+#register-btn{
+    font-size:15px;
+    text-align: center;
+    display:block;
+    margin:auto;
 }

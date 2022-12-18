@@ -2,6 +2,8 @@ const { findAUser }  = require('./users');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
 const jsonDbPath = path.join(__dirname, '/../data/users.json');
+// eslint-disable-next-line import/order
+const _ = require('lodash');
 
 
 function win(player){
@@ -25,10 +27,12 @@ function sortPlayer(){
     const tableSortPlayer = allPlayer.slice();
     tableSortPlayer.sort((a,b) => {
         // Calcule la somme des propriétés value1 et value2 pour chaque objet
-        const totA = a.scoreWin + b.scoreLose;
-        const sumA = a.scoreWin * totA;
-        const totb = a.scoreWin + b.scoreLose;
-        const sumB = b.scoreWin * totb;
+        
+        // --------------------- LIBRAIRIE -----------------------------
+        const totA = _.add(a.scoreWin,b.scoreLose);
+        const sumA = _.multiply(a.scoreWin,totA);  
+        const totB = _.add(a.scoreWin,b.scoreLose);
+        const sumB = _.multiply(a.scoreWin,totB);
 
         // Si la somme de a est inférieure à celle de b, a doit être classé apres b
         if (sumA < sumB) {
