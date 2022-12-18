@@ -8,8 +8,8 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"Martin",
-    "password":"1"
+    "username":"MartinB",
+    "password":"3"
 }
 
 ### Create  user
@@ -17,8 +17,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"user177",
-    "password":"password"
+    "username":"Luc",
+    "password":"2"
 }
 
 ### ADD WIN

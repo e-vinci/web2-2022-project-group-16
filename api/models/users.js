@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const path = require('node:path');
 const { parse,serialize } = require('../utils/json');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 const lifetimeJwt = 24 * 60 * 60 * 1000 * 80; // in ms : 24 * 60 * 60 * 1000 * 80= 80DAY
@@ -15,8 +17,9 @@ function login(username,password){
     const userFound = findAUser(username);
 
     if(!userFound) return undefined;
+    if(!bcrypt.compareSync(password,userFound.passwordCrypt))return undefined
 
-    if(userFound.password !== password) return undefined;
+ 
 
     const token = jwt.sign(
         { username },
@@ -33,12 +36,13 @@ function login(username,password){
 function register(username, password){
     const userFound = findAUser(username);
     if(userFound) return undefined; // si enregistrer == ERREUR
+    const passwordCrypt = bcrypt.hashSync(password,saltRounds);
 
     const user = parse(jsonDbPath)
     const createUser = {
         id : getNextIdUser(),
         username,
-        password,
+        passwordCrypt,
         scoreWin : 0,
         scoreLose : 0,
     };
