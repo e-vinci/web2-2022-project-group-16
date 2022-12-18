@@ -22,8 +22,7 @@ const LoginPage = () => {
     </div>
   </div>
   </div>
-  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>
-    `;
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 
   // eslint-disable-next-line no-use-before-define
   createBodyLogin();
@@ -50,10 +49,10 @@ y.className = "password-input";
 form.className = "form-danish";
 Realmain.className = "form-page";
 
-const z = document.createElement("button");
+const z = document.createElement("input");
 z.setAttribute("type", "submit");
 z.className = "btn-submit";
-z.textContent = "Log In"
+z.value = "Log In"
 
 main.appendChild(form)
 form.appendChild(labelx)
@@ -70,8 +69,6 @@ async function onLogin(e) {
 
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
-  console.log(username);
-  console.log(password);
 
   const options = {
     method: 'POST',
@@ -89,15 +86,6 @@ async function onLogin(e) {
   const authenticatedUser = await response.json();
   setAuthenticatedUser(authenticatedUser);  
   Navigate('/');
-}
-
-// eslint-disable-next-line no-unused-vars
-const footerInfo = () => {
-  const main = document.querySelector('main');
-  main.innerHTML += `</div>
-    </div>
-  </div>
-  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
 }
 
 export default LoginPage;

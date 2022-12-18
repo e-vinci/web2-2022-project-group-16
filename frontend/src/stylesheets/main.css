@@ -299,3 +299,18 @@ main.form-page{
     display:block;
     margin:auto;
 }
+table *{
+    font-family:"Kenney";
+    color:white;
+}
+table *{
+    border:2px dashed white;
+    padding:1rem;
+}
+.btn-submit{
+    padding-top:0.5rem;
+    border:none;
+}
+.form-danish label{
+    padding-top:0.5rem;
+}
