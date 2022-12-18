@@ -8,8 +8,7 @@ const lifetimeJwt = 24 * 60 * 60 * 1000 * 80; // in ms : 24 * 60 * 60 * 1000 * 8
 
 const jsonDbPath = path.join(__dirname, '/../data/users.json');
 const apiKey = process.env.API_KEY;
-console.log("****")
-console.log(apiKey);
+
 
 
 function login(username,password){
