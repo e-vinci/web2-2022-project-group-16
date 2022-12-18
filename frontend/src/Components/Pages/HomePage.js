@@ -2,7 +2,7 @@ import logo from '../../img/logo.svg';
 import menuBtn from '../../img/menu.png';
 import GetButtons from '../Router/GetButtons';
 import Button from '../Buttons/Button';
-import RulesModal from '../Modal/RulesModal';
+// import RulesModal from '../Modal/RulesModal';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -20,7 +20,6 @@ const HomePage = () => {
     </div>
   </div>
   <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
-  RulesModal();
   GetButtons();
   // eslint-disable-next-line no-use-before-define
   classement();

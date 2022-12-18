@@ -314,3 +314,15 @@ table *{
 .form-danish label{
     padding-top:0.5rem;
 }
+.modal-content h3,.modal-content ol li, .modal-content p{
+    font-family: "Kenney";
+    color:black;
+    -webkit-text-stroke: 0 #434A5F;
+}
+.modal-content{
+    background-color: white;
+    border-radius: 0;
+}
+.modal{
+    background-color:#211a217a;
+}
