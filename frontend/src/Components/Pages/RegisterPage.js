@@ -1,71 +1,64 @@
-import { getRememberMe, setAuthenticatedUser, setRememberMe } from '../../utils/auths';
-import { clearPage, renderPageTitle } from '../../utils/render';
+import { setAuthenticatedUser } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
 import backBtn from '../../img/back.png';
 import Button from '../Buttons/Button';
 import GetButtons from '../Router/GetButtons';
 
 const RegisterPage = () => {
-
-  clearPage();
   // eslint-disable-next-line no-const-assign
-  const mainInfo = document.querySelector('main');
-  mainInfo.innerHTML +=  `<div id="back"> ${Button('login page','/login',backBtn)} </div> `;
-  renderPageTitle('Register');
+  const main = document.querySelector('main');
+  main.innerHTML = `
+  <header class="px-3 pt-3 d-flex justify-content-between align-items-center">
+  <div id="back">
+  ${Button('login page','/',backBtn)}
+  </div>
+  </header>
+  <div id="game" class="d-flex justify-content-center align-items-center">
+  <div>
+    <div id="main-menu d-flex">
+    <div class="row">
+        <div class="col-12 text-center"><h2>Register account</h2></div></div>
+      <button id="register-btn" data-uri="/login" class="mt-3">Already have an account? Log In.</button>
+    </div>
+  </div>
+  </div>
+  <footer class="px-3 pb-3 d-flex justify-content-between align-items-center"></footer>`;
   renderRegisterForm();
 
   GetButtons();
 };
 
 function renderRegisterForm() {
-  const main = document.querySelector('main');
+  const Realmain = document.querySelector('main');
+  const main = document.querySelector('div.row');
   const form = document.createElement('form');
-  form.className = 'p-5';
-  const username = document.createElement('input');
-  username.type = 'text';
-  username.id = 'username';
-  username.placeholder = 'username';
-  username.required = true;
-  username.className = 'form-control mb-3';
-  const password = document.createElement('input');
-  password.type = 'password';
-  password.id = 'password';
-  password.required = true;
-  password.placeholder = 'password';
-  password.className = 'form-control mb-3';
-  const submit = document.createElement('input');
-  submit.value = 'Register';
-  submit.type = 'submit';
-  submit.className = 'btn btn-info';
-  const formCheckWrapper = document.createElement('div');
-  formCheckWrapper.className = 'mb-3 form-check';
-
-  const rememberme = document.createElement('input');
-  rememberme.type = 'checkbox';
-  rememberme.className = 'form-check-input';
-  rememberme.id = 'rememberme';
-  const remembered = getRememberMe();
-  rememberme.checked = remembered;
-  rememberme.addEventListener('click', onCheckboxClicked);
-
-  const checkLabel = document.createElement('label');
-  checkLabel.htmlFor = 'rememberme';
-  checkLabel.className = 'form-check-label';
-  checkLabel.textContent = 'Remember me';
-
-  formCheckWrapper.appendChild(rememberme);
-  formCheckWrapper.appendChild(checkLabel);
-
-  form.appendChild(username);
-  form.appendChild(password);
-  form.appendChild(formCheckWrapper);
-  form.appendChild(submit);
-  main.appendChild(form);
+  const x = document.createElement("input");
+  const labelx = document.createElement("label");
+  x.setAttribute("type", "text");
+  x.setAttribute('id','username');
+  labelx.innerHTML = "Username";
+  x.className = "username-input";
+  const y = document.createElement("input");
+  const labely = document.createElement("label");
+  y.setAttribute("type", "password");
+  y.setAttribute('id','password');
+  labely.innerHTML = "Password";
+  y.className = "password-input";
+  form.className = "form-danish";
+  Realmain.className = "form-page";
+  
+  const z = document.createElement("input");
+  z.setAttribute("type", "submit");
+  z.className = "btn-submit";
+  z.value = "Register"
+  
+  main.appendChild(form)
+  form.appendChild(labelx)
+  form.appendChild(x)
+  form.appendChild(labely)
+  form.appendChild(y)
+  form.appendChild(z)
   form.addEventListener('submit', onRegister);
-}
-
-function onCheckboxClicked(e) {
-  setRememberMe(e.target.checked);
 }
 
 async function onRegister(e) {
