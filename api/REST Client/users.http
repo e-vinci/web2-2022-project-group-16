@@ -12,12 +12,12 @@ Content-Type: application/json
     "password":"1"
 }
 
-### Create the manager user
+### Create  user
 POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"Luc",
+    "username":"user177",
     "password":"password"
 }
 

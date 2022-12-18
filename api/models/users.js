@@ -1,11 +1,15 @@
 const jwt = require('jsonwebtoken');
 const path = require('node:path');
 const { parse,serialize } = require('../utils/json');
+require('dotenv').config();
 
-const jwtSecret = 'danish';
+
 const lifetimeJwt = 24 * 60 * 60 * 1000 * 80; // in ms : 24 * 60 * 60 * 1000 * 80= 80DAY
 
 const jsonDbPath = path.join(__dirname, '/../data/users.json');
+const apiKey = process.env.API_KEY;
+console.log("****")
+console.log(apiKey);
 
 
 function login(username,password){
@@ -17,7 +21,7 @@ function login(username,password){
 
     const token = jwt.sign(
         { username },
-        jwtSecret, //obliger de le mettre le meme poiur tout le monde
+        apiKey, //obliger de le mettre le meme poiur tout le monde
         { expiresIn : lifetimeJwt } // Valable un certain temps
     );
     const userauthenticated = {
@@ -43,7 +47,7 @@ function register(username, password){
     serialize(jsonDbPath,user);
     const token = jwt.sign(
         { username },
-        jwtSecret, //obliger de le mettre le meme poiur tout le monde
+        apiKey, //obliger de le mettre le meme poiur tout le monde
         { expiresIn : lifetimeJwt } // Valable un certain temps
     );
     const userauthenticated = {
